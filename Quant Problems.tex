@@ -1,0 +1,289 @@
+\documentclass[10pt]{article}
+
+\usepackage{palatino}
+\usepackage{enumitem}
+\usepackage{pdflscape}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{xpatch}
+\usepackage{color}
+\usepackage{soul}
+
+\newcommand{\mathhl}[1]{\colorbox{yellow}{$\displaystyle #1$}}
+\newcommand{\E}{\text{E}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\Corr}{\text{Corr}}
+\newcommand{\std}{\text{std}}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\qed}{\hfill\rule{1.5mm}{3mm}}
+\newcommand{\rank}{\text{rank}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\P}{\text{P}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\MSE}{M\!S\!E}
+\newcommand{\MAE}{M\!A\!E}
+\newcommand{\tr}{\text{tr}}
+\renewcommand{\d}{\text{d}}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\iff}{\Leftrightarrow}
+
+\geometry{a4paper, margin=.5in, bottom=.4in, top=.4in}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\newenvironment{note}{\begin{enumerate}[leftmargin=1em,topsep=0pt,noitemsep]}{\end{enumerate}}
+\newenvironment{nnote}{\begin{enumerate}[leftmargin=.95em,topsep=0pt,noitemsep,label=$\bs{\cdot}$]}{\end{enumerate}}
+\newcommand{\solution}{\boxed{\textbf{SOLUTION}}\hspace{.5em}}
+\title{\vspace*{-2em}\sc Quant Interview Problems}
+\author{\textit{\small Allen Frostline}}
+\date{\vspace{-3em}\small{\today}}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+\begin{spacing}{1.1}
+
+\maketitle
+\thispagestyle{empty}
+
+\vspace{-1.5em}
+\begin{note}
+\item PG 4.1 coin toss game (61)
+
+      \solution Consider it as a sequential problem, then there're $2$ cases where A has more tops than B: A and B has the same number of tops in the first $n$ tosses, and then A tosses a top, or A has already more tops than B in the first $n$ tosses. Denote the probability of the condition of case $1$ as $x$ and the probability of case $2$ as $y$, then $2y + x = 1$. What we need is merely $y+x/2 = 1/2$.
+
+\item \hl{PG 4.1 card game (61)}
+      
+      \solution Let's calculate it sequentially. In total there're $P_{52}^2$ plays and $13$ kinds of my card with each kind for $4$ suits, and for each order $i\in\{1,2,\ldots,13\}$ we must have the dealer to take a card from $(i-1)\cdot 4$ kinds. Hence the probability is $16\sum_{i=1}^{13}(i-1) / P_{52}^2=(16\cdot 12 \cdot 13) / (2\cdot 52 \cdot 51) = 8/17$.
+
+\item \hl{PG 4.1 drunk passenger (62)}
+      
+      \solution The probability of my seat being untaken is equal to the probability that no one's ever taken it. This can be decomposed into three parts: \#1 takes his own seat, he takes my seat, or he takes any seat in between. While the first two cases are equivalent, the last case automatically lead to another drunk guy whose designated seat is \#1, so it's again symmetric. As a result the probability is $1/2$.
+
+\item PG 4.1 $n$ points on a circle (63)
+      
+      \solution Take any point $i\in{1,2,\ldots,n}$ for example and consider if all other points are on the semicircle starting from point $i$. The probability is easy to calculate and it's $1/2^{n-1}$. Since all points are symmetric in consideration, the resulting probability should be $N/2^{n-1}$.
+
+\item PG 4.2 poker hands (65)
+
+      \solution There're in total $C_{52}^5$ cases. Four-of-a-kind: $13\cdot (52 - 4)$; Full-house: $C_{13}^2\cdot2\cdot C_4^3\cdot C_4^2$; Two-pair: $C_{13}^2\cdot(C_4^2)^2\cdot (52-4)$. The probabilities are merely these numbers devided by the total number of cases.
+
+\item \hl{PG 4.2 hopping rabbit (66)}
+      
+      \solution We solve it recursively. Let the number of ways to reach stair $k$ be $f(k)$, then we have recursion $f(k+2)=f(k+1)+f(k)$ with initial conditions $f(0)=1$ and $f(1)=1$. It's, therefore, a standard Fibonacci sequence and we know $f(n)=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n\right]$.
+
+\item \hl{PG 4.2 screwy pirates 2 (67)}
+
+      \solution In order to forbid any $5$-combination of pirates to open the safe while allow exactly the rest $6$ to be able to do so, the number of locks needed is given by the number of suck combinations, either $6$ out of $11$ or $5$ out of $11$, and the number is $C_{11}^5$. Each lock must corresponds to at least $6$ keys and by symmetry the number of keys for each pirate should be $C_{11}^5\cdot 6/11$.
+
+\item \hl{PG 4.2 chess tournament (68)}
+
+      \solution In order to have $1$ to meet $2$ in the final, they must be in different half-games. This means a total number of $2(2^n-2)!(2^{n-1})^2$ cases, while in total there is $2^n!$ combinations. So the probability should be $2(2^n-2)!(2^{n-1})^2 / 2^n! = 2^{n-1}/(2^n-1)$.
+
+\item PG 4.2 application letters (69)
+
+      \solution This is called the dearrangement number and we can solve it recursively. Denote $f(k)$ as the number of ways to put all letters in wrong envelopes. Assume that letter $1$ is in some envelope $i\in\{2,3,\ldots,k\}$, then we have two cases: letter $k$ being in envelope $1$ or not. This leads to the recursion $f(k)=k[f(k-1)+f(k-2)]$ with initial conditions $f(1)=0$ and $f(2)=1$. Let $f(k):=k!\cdot g(k)$ and we can derive $g(k)$.
+
+\item \hl{PG 4.2 birthday problem (71)}
+
+      \solution Let $\Pi_{i=0}^{k}(365-i)/365^k<1/2$. Enumeration tells that the smallest $k$ is $22$ and thus there should be at least $23$ people.
+
+\item PG 4.2 100th digit (71)
+      
+      \solution Notice that the binomial expansions of $(1+\sqrt{2})^{3000}$ and $(1-\sqrt{2})^{3000}$ have irrational, $\sqrt{2}$ to singular powers, yet with the opposite signs. This indicates that $(1+\sqrt{2})^{3000}+(1-\sqrt{2})^{3000}$ is an integer while since $|1-\sqrt{2}|<1$, we know $0<(1-\sqrt{2})^{3000}\ll10^{-100}$ and the 100th digit of $(1+\sqrt{2})^{3000}$ is $9$.
+
+\item \hl{PG 4.2 cubic of integer (72)}
+      
+      \solution We only consider the last two digits. There're 100 possible cases, namely from $00$ up until $99$, which can be written as $10a+b$. The binomial expansion of $(10a+b)^3=1000a^3+300a^2b+30ab^2+b^3$ indicates the only solution, which is $b=1$ and $a=7$. So the probability is $1\%$.
+
+\item \hl{PG 4.3 boys and girls (73)}
+      
+      \solution Denote $A$ as having at least one boy out of the two. Denote $B$ as having two boys, $C$ as having a boy and a girl, and $D$ as having two girls. Also, we know $\P[A\mid B]=1$, $\P[A\mid C]=1$ and $\P[A\mid D]=0$. By Bayes' formula we have $\P[B\mid A]=\frac{\P[A\mid B]\cdot\P[B]}{\P[A\mid B]\cdot\P[B]+\P[A\mid C]\cdot\P[C]+\P[A\mid D]\cdot\P[D]}$.
+
+      \begin{nnote}
+      
+      \item We have $\P[B]=1/4$, $\P[C]=1/2$ and $\P[D]=1/4$. Therefore, By Bayes' formula we have $\P[B\mid A]=1/3$.
+      
+      \item Different from the previous problem, now define $A^-$ as the case where the \textbf{first} child is a boy. Now, $\P[A^-\mid B]=1$, $\P[A^-\mid C]=1/2$ and $\P[A^-\mid D]=0$. So $\P[B\mid A^-]=\frac{\P[A^-\mid B]\cdot\P[B]}{\P[A^-\mid B]\cdot\P[B]+\P[A^-\mid C]\cdot\P[C]+\P[A^-\mid D]\cdot\P[D]}=1/2$.
+      
+      \end{nnote}
+
+\item \hl{PG 4.3 all-girl world (74)}
+      
+      \solution The fraction of girls is solely given by nature, and thus is $50\%$.
+
+\item \hl{PG 4.3 unfair coin (74)}
+
+      \solution Denote event $A$ as the coin tosses being the unfair one, $B$ as a consecutive sequence of $10$ tosses gives all heads. We know that $\P[A]=1/1000$ and $\P[\bar{A}]=999/1000$. We also know that $\P[B\mid A]=1$ and $\P[B\mid \bar{A}]=2^{-10}$. Then by Bayes' theorem, we have $\P[A\mid B]=\P[B\mid A]\cdot\P[A]\cdot(\P[B\mid A]\cdot\P[A]+\P[B\mid \bar{A}]\cdot\P[\bar{A}])^{-1}=0.506$.
+
+\item \hl{PG 4.3 fair probability from an unfair coin (75)}
+
+      \solution Toss twice and let $HT$ be win, $TH$ be loss, otherwise again.
+
+\item \hl{PG 4.3 dart game (75)}
+      
+      \solution This is about the probability that the last throw does not lead to the best score. Any of the three throws can be in that case so the probability is $1/3$.
+
+\item \hl{PG 4.3 birthday line (76)}
+      
+      \solution Say that you choose to be in position $n\ge 1$, then the probability that you get that ticket is $\P[n]=\frac{365!}{365^{n-1}(365-n+1)!}\frac{n-1}{365}$. In order to have $P[n]>P[n-1]$ and $P[n]>P[n+1]$ we have $n=20$.
+
+\item \hl{PG 4.3 dice order (78)}
+      
+      \solution The total number of events that're required is $n=C_6^3$ while the number of all possible events is $N=6^3$. So the probability is $\P = C_6^3 / 6^3 = 5/54$.
+
+\item \hl{PG 4.3 monty hall (78)}
+      
+      \solution There're two cases.
+
+      \begin{nnote}
+            \item If I chose the door with car, which has a probability of $1/3$, then switching leads to $\P[\text{switch and car}\mid\text{car}]=0$.
+            \item If I chose the door with goat, which has a probability of $2/3$, then switching leads to $\P[\text{switch and car}\mid\text{goat}]=1$.
+      \end{nnote}
+
+      Therefore, $\P[\text{switch and win}]=2/3$.
+
+\item PG 4.3 amoeba population (79)
+
+      \solution Solve the fixed point of the generating function $f(x)=(1+x+x^2+x^3)/4$. The only reasonable solution is $x=\sqrt{2}-1$.
+
+\item \hl{PG 4.3 candies in a jar (79)}
+      
+      \solution If blue is the last, then the conditional probability that green is the last among all red and green candies is $\P_1=3/4$. If green is the last, then the conditional probability that blue is the last among all red and blue candies is $\P_2=2/3$. As a result, the probability that all reds end before blue and green is $\P=\P_1/3+\P_2/2=1/4+1/3=7/12$.
+
+\item \hl{PG 4.3 coin toss game (80)}
+      
+      \solution Let's say the probability is $\P[A]$. Then $\P[B]=1-\P[A]$. We condition on $A$'s first toss. If it's a tail, then it's become the opposite case where $B$ is the first one to toss, and thus $\P[A\mid T]=\P[B]=1-\P[A]$. If it's a head, then we have two sub-cases: (a) if $B$ tosses a tail, then $B$'s won; (b) is $B$ tosses a head, then the game starts again. So we have $\P[A\mid H]=0+(1-\P[A\mid H])/2$. Together with these two equations we have $\P[A]=\P[A\mid H]/2 + \P[A\mid T]/2 = 4/9$. This should be smaller than $1/2$ because $A$ can never win in the first toss, while $B$ can.
+
+\item PG 4.3 russian roulette series (81)
+      
+      \solution We solve it one by one. 
+
+      \begin{nnote}
+      \item No it does not matter. The probability is always $1/2$. 
+      \item Let the probability be $p$ if we choose to play first, then to loss means $p=1/6 + 5/6\cdot (1-p)$, so $p=6/11$. Therefore, we should choose to play second which gives a loss probability of $5/11$.
+      \item It's just $2/6$ and $2/5$. You definitely should spin.
+      \item Say that the $2$ bullets are in bezels $1$ and $2$. Then the opponent can have chosen anywhere between $3$ and $6$, so the probability that I can live is $3/4$ if I don't spin. In contrast, if I spin, the probability should be indifferent to what he's chosen and the living probability is $4/6=2/3$, which is less. So I should not spin.
+      \end{nnote}
+
+\item \hl{PG 4.3 aces (82)}
+      
+      \solution Total number of events is $N=\frac{52!}{(13!)^4}$. The total number of events where each player has an ace is $n=4!\cdot\frac{48!}{(12!)^4}$. So the probability is $n/N=\frac{4!\cdot 48!\cdot(13!)^4}{52!\cdot (12!)^4}=\frac{13^4\cdot 24}{52\cdot 51\cdot 50\cdot 49}=0.105$.
+
+\item PG 4.3 gambler's ruin problem (83)
+
+      \solution Let $\P_i$ be the winning probability starting from fortune $i$, then $\P_i=\P_{i-1}p+\P_{i+1}q$, which together with boundary conditions $\P_0=0$ and $\P_N=1$ gives
+      $$
+      \P_i=\begin{cases}
+      \frac{1-(q/p)^i}{1-(q/p)^N} & \text{if }p\neq 1/2,\\
+      i/N & \text{if }p=1/2.
+      \end{cases}
+      $$
+
+\item \hl{PG 4.3 basketball scores (84)}
+
+      \solution Denote $(n,k)$ as $n$ throws with $k$ scores. Then $\P[(3,1)]=\P[(3,2)]=1/2$. Further, we have
+
+      \begin{nnote}
+      \item $\P[(4,1)]=\P[(4,1)\mid(3,1)]\P[(3,1)]=2/3\cdot 1/2=1/3$;
+      \item $\P[(4,2)]=\P[(4,2)\mid(3,1)]\P[(3,1)]+\P[(4,2)\mid(3,2)]\P[(3,2)]=1/3\cdot 1/2 + 1/3\cdot 1/2=1/3$;
+      \item $\P[(4,3)]=\P[(4,3)\mid (3,2)]\P[(3,2)] = 2/3\cdot 1/2 = 1/3$.
+      \end{nnote}
+
+      So we guess that $\P[(n,k)]\equiv (n-1)^{-1}$. By induction this is proved, and thus the answer is $1/99$.
+
+\item PG 4.3 cars on road (85)
+      
+      \solution Solve $(1-p)^4=1-609/625$ and we have $p=3/5$.
+
+\item PG 4.4 meeting probability (88)
+
+      \solution The probability is the area of $\abs{X-Y}\le 5$, and thus is $\P=(60^2-55^2)/60^2=23/144$.
+
+\item \hl{PG 4.4 probability of triangle (89)}
+
+      \solution Assume the first cut is $x$ and the second $y$. To make it possible to form a triangle, we need:
+
+      \begin{nnote}
+      \item $\max\{x,y\}>1/2$;
+      \item $\min\{x,y\}<1/2$;
+      \item $\abs{y-x}<1/2$.
+      \end{nnote}
+
+      Therefore, we can calculate the area and get the probability as $\P=1/4$.
+
+\item \hl{PG 4.4 property of Poisson process (90)}
+      
+      \solution Exponential waiting time is memoriless both forward and backward time: $f(t)=\lambda e^{-\lambda t}$. The expected waiting time is $10$ minutes for both.
+
+\item \hl{PG 4.4 moments of normal distribution (91)}
+      
+      \solution We have the central moments of standard normal distribution as $\mu_1=0$, $\mu_2=1$, $\mu_3=0$ and $\mu_4=3$. More generally, we have $\mu_{2k}=(2k-1)!!$ and $\mu_{2k+1}=0$ for all $k\in\N$. The $k$-th moment is calculated by taking the $k$-th derivative of $M(t)=\E[e^{tX}]$.
+
+\item PG 4.5 connecting noodles (93)
+
+      \solution Assume we have $n$ noodles, i.e. $2n$ ends, then there're in total $C_{2n}^2=n(2n-1)$ combinations in which $n$ makes $1$ circle. So we have $\E[f(n)]=\E[f(n-1)]+(2n-1)^{-1}$.
+
+\item PG 4.5 optimal hedge ratio (94)
+
+      \solution Assume we short $\Delta$ shares of $B$, then $\Var[A-\Delta B]=\sigma_A^2+\Delta^2\sigma_B^2-2\Delta\sigma_A\sigma_B\rho$. Take the first derivative of $\Delta$ to this equation and evaluate it to zero, then we have $\Delta\sigma_B^2=\sigma_A\sigma_B\rho\Rightarrow \Delta=\rho\sigma_A/\sigma_B$.
+
+\item \hl{PG 4.5 dice game (94)}
+
+      \solution With $1/2$ probability we have expected payoff $\E_1=2$; with the other $1/2$ probability we have $\E_2=5+\E$. So we have $\E=\E_1/2+\E_2/2 = 7/2+\E/2 \Rightarrow \E=7$.
+
+\item \hl{PG 4.5 card game (95)}
+
+      \solution Define $5$ regions devided by the $4$ aces, then the probability of a card being in any region is $1/5$, and thus the expected position of the first ace is $\E=1+48/5=10.6$ (which is really smart).
+
+\item PG 4.5 sum of random variables (96)
+      
+      \solution This is the area in a unit hyper-cube, that is, $\P = 1\times1\times\frac{1}{2}\times\frac{1}{3}\times\cdots\times\frac{1}{n}=1/n!$ (Also, we can use $\P[\sum_{i=1}^n x_i < 1]=\int_0^1 \P[\sum_{i=1}^{n-1} x_i < 1 - x_n]\d x_n = \P[\sum_{i=1}^{n-1} x_i < 1] / n = \cdots = 1/n!$).
+
+\item \hl{PG 4.5 coupon collection (97)}
+
+      \solution We solve part A and B separately.
+
+      \begin{nnote}
+      \item Part A. Assume the expected number of tries is $\E[X_n]$ to get the $n$-th kind of coupon in a sequence, then, since $\E[X_n]=\frac{N}{N-n+1}$ and the total number of tries is merely the sum, we have $\E[X]=\sum_{n=1}^N\E[X_i]=\sum_{n=1}^N\frac{N}{N-n+1}=N(1^{-1}+2^{-1}+\cdot+N^{-1})$.
+      \item Part B. Define inticator variable $I_i$ as $1$ if at least $1$ coupon is of type $1$ in the $n$-coupon set and $0$ if there's not. Then we know $\P[I_i=0]=(\frac{N-1}{N})^n$ for any $i$. This gives $\E[I_i]=1\cdot \P[I_i=1]=1-\P[I_i=0]=1-(\frac{N-1}{N})^n$. Also we have the total number of types is $Y=\sum_{i=1}^n I_i$ and thus $\E[Y]=\sum_{i=1}^n\E[I_i]=1-N(\frac{N-1}{N})^n$.
+      \end{nnote}
+
+\item \hl{PG 4.5 joint default probability (98)}
+
+      \solution The largest probability to have at least one bond to default is $50\%+30\%=80\%$ which requires $\rho=-1$.
+
+\item PG 4.6 expected value of max and min (99)
+
+      \solution For any $n>0$ we have $F(z)=\P[Z_n \le z]=z^n\Rightarrow f(z)=nz^{n-1}$ and thus $\E[Z_n] = n\int_0^1 z^n\d z = \frac{n}{n+1}$. Symmetrically, we have $\E[Y_n] = \frac{1}{n+1}$.
+
+\item PG 4.6 correlation of max and min (100)
+
+      \solution We need $\E[Z]$, $\E[Y]$, $\E[YZ]$, $\std[Z]$ and $\std[Y]$. We already have $\E[Z]=2/3$ and $\E[Y]=1/3$ from the previous question. We also have $\E[Z^2]=n\int_0^1 z^{n+1}\d z = \frac{n}{n+2}=1/2$ and thus $\std[Z]=\sqrt{\E[Z^2]-\E[Z]^2}=\sqrt{1/2 - 4/9}=\sqrt{1/18}$. Symmetrically we have $\std[Y]=\std[Z]=\sqrt{1/18}$. Lastly, we have $\E[YZ]=\E[X_1X_2]=\E[X_1]\E[X_2]=1/4$ because of independence. As a conclusion, $\Cov[Z,Y]=\E[YZ]-\E[Y]\E[Z]=1/4-2/9=1/36$ and $\Corr[Z,Y]=\Cov[Z,Y]/18=1/2$.
+
+\item PG 4.6 random ants (102)
+
+      \solution This is merely the expected value of the maximum of $n=500$ i.i.d. uniform r.v.s. which we already calculated in problem on pg. 99, i.e. $\E[\max X]=\frac{n}{n+1} = \frac{500}{501}$.
+
+\item PG 5.1 gambler's ruin problem (107)
+
+\item PG 5.1 dice question (108)
+
+\item PG 5.3 dice game (123)
+
+\item PG 5.3 dynamic dice game (126)
+
+\end{note}
+
+
+
+\end{spacing}
+\end{document}
