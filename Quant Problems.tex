@@ -274,12 +274,49 @@
       \solution This is merely the expected value of the maximum of $n=500$ i.i.d. uniform r.v.s. which we already calculated in problem on pg. 99, i.e. $\E[\max X]=\frac{n}{n+1} = \frac{500}{501}$.
 
 \item PG 5.1 gambler's ruin problem (107)
+      
+      \solution Assume the winning probability starting from \$$1$ is $a_1$, and similarly define $a_2$, $a_3$ and $a_0$. Then $a_0=0$, $a_3=1$, $a_1=2/3\cdot a_2 + 1/3\cdot a_0$ and $a_2 = 1/3\cdot a_1 + 2/3\cdot a_3$. Finally we have $a_1=4/7$.
 
 \item PG 5.1 dice question (108)
+      
+      \solution We use conditional probability. Denote $F$ as the sum of first throw, and $A$ being $A$ wins, then $\P[A] = \P[A\mid F=12]\cdot\P[F=12] + \P[A\mid F=7]\cdot\P[F=7] + \P[A\mid F\not\in\{7,12\}]\cdot\P[F\not\in\{7,12\}]=7/13$.
+
+\item \hl{PG 5.1 coin triplets (109)}
+
+\item \hl{PG 5.2 coin sequence (119)}
 
 \item PG 5.3 dice game (123)
 
+      \solution In the third throw we have $1/6$ probability for each result $x$, which leads to the expected value $\E[V_3]=3.5$, while we're not necessarily optimal to choose to throw the third time. Actually, our possible values for the second throw are
+      $$
+      V_2 = \begin{cases}
+      3.5 & \text{if we get $1,2,3$},\\
+      4 & \text{if we get $4$},\\
+      5 & \text{if we get $5$},\\
+      6 & \text{if we get $6$}\\
+      \end{cases}
+      $$
+      and each has probability $1/6$, so $\E[V_2]=4.25$. Further, conditional on the first throw, we can actually have better choices, namely
+      $$
+      V_1 = \begin{cases}
+      4.25 & \text{if we get $1,2,3,4$},\\
+      5 & \text{if we get $5$},\\
+      6 & \text{if we get $6$}\\
+      \end{cases}
+      $$
+      and thus $\E[V_1]=14/3$.
+
+\item \hl{PG 5.3 world series (123)}
+
 \item PG 5.3 dynamic dice game (126)
+      
+      \solution First we calculate the expected game return $n$. Assume we continue playing whenever we have no more than $n$ money, then $\sum_{i=1}^5 (n+i)/6 = 5n/6 + 2.5 > n$, which gives $n < 15$. Therefore, we need to calculate all $\E[f(n)]$ where $n=0,1,\ldots,19$ and $f(\cdot)$ is the return. For $n=15,16,\ldots,19$, we have $\E[f(n)]=f(n)=n$; for $n=0,1,\ldots,14$, we have $\E[f(n)]=\sum_{i=1}^5 \E[f(n+i)]/6$. By backward-induction we have $\E[f(0)]=6.15$ which is exactly the expected amount of money when our current value is zero.
+
+\item \hl{PG 5.3 dynamic card game (127)}
+
+\item PG 5.4 stopping time / first passage time (131)
+
+\item PG 5.4 Ito's lemma (135)
 
 \end{note}
 
