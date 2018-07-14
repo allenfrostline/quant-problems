@@ -316,17 +316,58 @@
 
 \item \hl{PG 5.4 Brownian motion (129)}
 
-      \solution We'll solve them one by one below.
+      \solution We solve these problems one by one. 
+
+      \textbf{A}. The Brownian motion is defined as the stochastic process that starts from $B(0)=0$ and has normal i.i.d. increments with zero mean and variance equal to its length $t$. Some important properties are:
 
       \begin{nnote}
-      \item 
+      \item continuous
+      \item $\E[B(t)]=0$, $\E[B(t)^2]=t$, $B(t)\sim\mathcal{N}(0,t)$
+      \item martingale: $\E[B(t+s)\mid B(t)]=B(t)$
+      \item Markov: $\E[B(t+0)\mid B(s) \forall s \in [0,t)]=\E[B(t+0)\mid B(t)]$
+      \item $Y(t)=B(t)^2-t$ is a martingale
+      \item $Z(t)=\exp(\lambda B(t)-\lambda^2t/2)$ is a martingale (called \textbf{exponential martingale})
       \end{nnote}
 
+      \textbf{B}. The correlation of a Brownian motion and its square is zero, because $\Cov[B,B^2]=\E[B^3]-\E[B]\E[B^2]=0 - 0 = 0$.
+
+      \textbf{C}. To calculate the probability of $B_1>0$ and $B_2<0$, we need, by independence of increments, $B_1>0$ and $B_2-B_1<-B_1$ where $B_1$ and $B_2-B_1$ are independent. Therefore, we equivalently have two i.i.d. normal random variables $X$ and $Y$, and need to calculate $\P[Y>X>0]=\P[X>0]\cdot\P[Y>0]\cdot\P[Y>X] = 1/8$.
+
 \item PG 5.4 stopping time / first passage time (131)
+      
+      \solution We solve them separately. 
+
+      \textbf{A}. As we said above, $B_t^2-t$ is a martingale, so is $B_T^2-T$. Therefore, we have $\E[B_T^2-T]=0$. Because we assume $T$ the time of first passage, we have $\abs{B_t}=1$ and thus $\E[T] = \E[B_T^2] = 1$.
+
+      \textbf{B}. By reflection principle, we know 
+      $$
+      \P[\tau_x \le t] = \P[\tau_x \le t, W(t) > x] + \P[\tau_x \le t, W(t) \le x] = 2 \P[\tau_x \le t, W(t) > x] = 2(1 - \mathcal{N}(x / \sqrt{t})).
+      $$
+      Therefore we have, by taking derivative w.r.t. $t$,
+      $$
+      f_{\tau_x}(t) = \frac{x\exp(-x^2/2t)}{t\sqrt{2\pi t}},\quad \forall x > 0.
+      $$
+      To answer the question what the expected time to reach any $x>0$, we're not usign the same process. Instead, we can show from \textbf{A} that the expected first passage time to reach $\alpha>0$ or $-\beta<0$ is $\E[\tau_{\alpha,-\beta}]=\alpha\beta$. Therefore, we have $\E[\tau_x]\equiv\E[\tau_{x,-\infty}]=x\cdot\infty=\infty$.
+
+      \textbf{C}. Assume the probability of hitting $3$ first is $\P_3$, then since $B_T$ is a martingale for $T$ being the first passage time, we know $3\P_3 + (-5)(1- \P_3)=0$ which gives $\P_3 = 5/8$. Generally, we have $\P_{\alpha}=\alpha/(\alpha + \beta)$. For $B_t=W_t+mt$, since $\exp(\lambda W_t + \lambda^2t/2)$ is a martingale (see exponential martingale), we know $X_t = \exp(\lambda B_t + \lambda^2t/2)$ is also a martingale and thus $\E[X_t]=0$. Notice this holds for any $\lambda$ and thus we can let $\lambda = -2m$, which gives $\E[X_t] = \E[\exp(-2mB_t)]=1$. We know a martingale stopped at the stopping time is also a martingale, i.e. $X_T$ is still a martingale for $T$ being the time first $B_t$ hits $3$ or $-5$, so $\E[X_T] = \E[\exp(-2mB_T)]=\P_3\exp(-2m\cdot 3) + (1-\P_3)\exp(2m\cdot 5) = \P_3\exp(-6m)+(1-\P_3)\exp(10m)=1$. Therefore, we have $\P_3 = \frac{\exp(10m)-1}{\exp(10m)-\exp(-6m)}$.
+
+      \textbf{D}. Again we have $\E[\exp(-2mB_t)]=1$ while here we have $m=1$, and thus $\E[\exp(-2B_t)]=\P_{-1}\exp(2) + (1-\P_{-1})\exp(-\infty)=\exp(2)\P_{-2}=1$. So $\P_{-1}=\exp(-2)$.
 
 \item PG 5.4 Ito's lemma (135) 
+      
+      \solution First let's recite the Ito's lemma:
+      $$
+      \d f = \left(\frac{\partial f}{\partial t} + \alpha \frac{\partial f}{\partial x} + \frac{\beta^2}{2}\frac{\partial^2 f}{\partial x^2}\right)\d t + \beta \frac{\partial f}{\partial x}\d w
+      $$
+      which directly gives the drift rate $\d f / \d t$.
+
+      \textbf{A}. Since $Z_t  = \sqrt{t}B_t$, we have for constant $t$, $Z_t$ is symmetric around $0$ and thus has $\E[Z_t]=0$ and $\Var[Z_t]=t^2$. However, to determine whether $Z_t$ is a martingale or not we need either to use its definition, which says conditional expectation is equal to the current expectation, or to prove that it's a Wiener process with no drift term. Use Ito's lemma and we can prove $Z_t$ has non-zero drift term, so it's not a martingale.
+
+      \textbf{B}. Similar to $\textbf{A}$, we need to use Ito's lemma and can actually show $f=W^3$ has a non-zero drift term, so it's not a martingale either.
 
 \item \hl{PG 6.1 price direction of options (137)}
+      
+      
 
 \item \hl{PG 6.1 put-call parity (138)}
 
@@ -334,7 +375,7 @@
 
 \item \hl{PG 6.1 BSM differential equation (142)}
 
-\item PG 6.1 MS formula (143)
+\item PG 6.1 BS formula (143)
 
 \end{note}
 
