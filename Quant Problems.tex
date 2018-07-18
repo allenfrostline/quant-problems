@@ -9,6 +9,7 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{geometry}
+\usepackage{booktabs}
 \usepackage{xpatch}
 \usepackage{color}
 \usepackage{soul}
@@ -366,22 +367,141 @@
       \textbf{B}. Similar to $\textbf{A}$, we need to use Ito's lemma and can actually show $f=W^3$ has a non-zero drift term, so it's not a martingale either.
 
 \item \hl{PG 6.1 price direction of options (137)}
+
+      \solution The co-movements are summarized below.
       
-      
+      \begin{center}
+      \begin{tabular}{ccccc} \toprule
+      variable          & Eu. call     & Eu. put      & Am. call     & Am. put      \\ \midrule    
+      $S \uparrow$      & $\uparrow$   & $\downarrow$ & $\uparrow$   & $\downarrow$ \\             
+      $K \uparrow$      & $\downarrow$ & $\uparrow$   & $\downarrow$ & $\uparrow$   \\             
+      $\tau \uparrow$   & ?            & ?            & $\uparrow$   & $\uparrow$   \\             
+      $\sigma \uparrow$ & $\uparrow$   & $\uparrow$   & $\uparrow$   & $\uparrow$   \\             
+      $r \uparrow$      & $\uparrow$   & $\downarrow$ & $\uparrow$   & $\downarrow$ \\             
+      $D \uparrow$      & $\downarrow$ & $\uparrow$   & $\downarrow$ & $\uparrow$   \\ \bottomrule 
+      \end{tabular}
+      \end{center}
 
 \item \hl{PG 6.1 put-call parity (138)}
+      
+      \solution First let's cite the put-call parity below. For European options:
+      $$
+      c - p = S - K\exp(-r\tau)
+      $$
+      and for American options:
+      $$
+      C - P \in [S - K\exp(-r\tau) - D, S - K\exp(-r\tau)].
+      $$
+      This can be proved easily if we consider the LHS as a forward with payoff $\max(S_T-K, 0) - \max(K - S_T, 0)=S_T - K$. By discounting using the risk-free rate we have the equation.
 
 \item \hl{PG 6.1 American v.s. European options (139)}
 
-\item \hl{PG 6.1 BSM differential equation (142)}
+      \solution We've got two ways to answer this question.
+
+      \begin{nnote}
+      \item First is that exercising a call is giving its intrinsic value $S-K$ while neglecting its time value $K - K\exp(-r\tau)$ and the protection put's value $p$. Instead of exercising it early, it's better off to sell it before maturity.
+      \item Second, we try to use the Jensen's inequality. It's clear that the $C(S)=(S-K)^{+}$ is a convex function, and thus we have $\E[C(S_T)]\ge C(\E[S_T])$.
+
+      \end{nnote}
+
+\item \hl{BS differential equation (142)}
 
 \item PG 6.1 BS formula (143)
+      
+      \solution First let's cite the original BS formula:
+      $$
+      c = S\exp(-y\tau)\mathcal{N}(d_1) - K\exp(-r\tau)\mathcal{N}(d_2)\quad \text{and}\quad p = K\exp(-r\tau)\mathcal{N}(-d_2) - S\exp(-y\tau)\mathcal{N}(-d_1)
+      $$
+      where
+      $$
+      d_1 = \frac{\ln(S/K) + (r-y+\sigma^2/2)\tau}{\sigma\sqrt{\tau}}
+      $$
+      and
+      $$
+      d_2 = d_1 - \sigma\sqrt{\tau}.
+      $$
+      Note that if the underlying asset is an option, $y=0$; if the underlying asset is a future then $y=r$; if the underlying asset is a foreign currency, then $y=r_f$ where $r_f$ is the foreign risk-free rate.
 
+      \textbf{A}. Now that the asset is an European option, we have $y=0$, which requires the following assumptions:
+      \begin{nnote}
+      \item There is no arbitrage, boundary, cost, dividend or tax.
+      \item Stock price is GBM.
+      \item All securities are perfectly divisible.
+      \item The risk-free rate is constant and known.
+      \end{nnote}
+
+      \textbf{B}. According to the risk-neutral probability measure, the price of an option should be equal to the discounted value of the payoff. This means $V(t) = \exp(-rt)\E[V(T)\mid S(t)]$ when $r$ is a constant. Since $S$ follows a GBM, i.e.
+      $$
+      \d S = rS\d t + \sigma S\d w,
+      $$
+      by applying Ito's lemma, we have
+      $$
+      \d (\ln S) = (r - \sigma^2/2)\d t + \sigma\d w\Rightarrow \ln S\sim\mathcal{N}(\ln S_T + (r - \sigma^2/2)\tau, \sigma^2\tau)
+      $$
+      and thus $S_T = S\exp[(r-\sigma^2/2)\tau + \sigma\sqrt{T}\epsilon]$ where $\epsilon\sim\mathcal{N}(0,1)$. This shall be enough to derive the BS formula. 
+      
+      \textbf{C}. Skipped.
+
+      \textbf{D}. The option should value \$$1/H$ because whenever a \$$1$-stock hits \$$H$ it pays \$$1$. By no arbitrage assumption we know it must worth $1/H$ of the stock value.      
+
+      \textbf{E}. Assume $S\sim\text{GBM}(r, \sigma^2)$, then the derivative has payoff $f(S) = 1/S$ and thus by Ito's lemma we have
+      $$
+      \d f = \left(\frac{\partial f}{\partial t} + \frac{\partial f}{\partial S}r S + \frac{\partial^2 f}{\partial S^2}\frac{\sigma^2 S^2}{2}\right)\d t + \frac{\partial f}{\partial S}\sigma S\d w = (\sigma^2 - r)f \d t - \sigma f \d w
+      $$
+      and thus
+      $$
+      \ln f = \left(\frac{\sigma^2}{2} - r\right)\d t - \sigma\d w.
+      $$
+      Therefore, we have 
+      $$
+      \ln f(T) = \ln f(t) + \mathcal{N}((\sigma^2/2 - r)\tau, \sigma^2\tau)
+      $$
+      and thus we know $\E[f(T)] = \E[\exp(\ln f(T))] = \exp(\sigma^2 \tau  - r \tau) / S_T$. Discount this value using risk-free interest rate $r$ and we have $V = \exp(\sigma^2\tau -2r\tau) / S$.
 \item PG 6.2 delta (149)
 
+      \solution Before we solve the problem, let's review the definitions of the greeks:
+      \begin{nnote}
+      \item Delta: $\Delta = \partial f / \partial S$
+      \item Gamma: $\Gamma = \partial^2 f \partial S^2$
+      \item Theta: $\Theta = \partial f / \partial t$
+      \item Vega: $\nu = \partial f / \partial \sigma$
+      \item Rho: $\rho = \partial f / \partial r$
+      \end{nnote}
+      \textbf{A}. For an European call option with value $c = S\exp(-yt)\mathcal{N}(d_1) - K\exp(-rt)\mathcal{N}(d_2)$ we have
+      $$
+      \Delta = \partial c / \partial S = \exp(-yt)\mathcal{N}(d_1) = \mathcal{N}(d_1)
+      $$
+      when there is no dividend payment. However, here cannot directly take out the second part because we also have $S$ in $d_1$ and $d_2$. In fact, since $d_2 = d_1 -\sigma\sqrt{\tau}$ we know that
+      $$
+      \partial d_1 / \partial S = \partial d_2 / \partial S
+      $$
+      and thus it can be proved that $\mathcal{N}'(d_2) = \mathcal{N}'(d_1)\exp((r-y)\tau)S / K$, which eventually means the last two parts with $\mathcal{N}'$ in $\Delta$ cancels out, so the result is still $\Delta = \mathcal{N}(d_1)$.
+
+      \textbf{B}. When there is no dividend and the option is at-the-money, we know that the Delta is given by
+      $$
+      \Delta = \mathcal{N}(d_1) = \mathcal{N}\left(\left(\frac{r}{\sigma} + \frac{\sigma}{2}\right)\sqrt{\tau}\right)
+      $$
+      which is always above $1/2$ and gets larger as $\tau$ gets larger, i.e. with the option coming to maturity the Delta will get smaller.
+
+      \textbf{C}. We need Delta hedging. This means with every $1$ option bought we also short $\Delta$ stocks.
+
+      \textbf{D}. Since it's at-the-money, we have $S=K$. Also, for small $r$ a typical volatility $\sigma< 40\%$ and maturity $\tau < 1/4$ year both tells that the value of the option is approximated by
+      $$
+      c = S\exp(-yt)\mathcal{N}(d_1) - K\exp(-rt)\mathcal{N}(d_2) \approx S(\mathcal{N}(d_1) - \mathcal{N}(d_2)) \approx \frac{\sigma\sqrt{\tau}S}{\sqrt{2\pi}} \approx 0.4\sigma S\sqrt{\tau}.
+      $$
+
+\item \hl{PG 6.2 gamma (152)}
+
+\item \hl{PG 6.2 theta (154)}
+
+\item \hl{PG 6.2 vega (156)}
+
+\item PG 6.3 bull spread (159)
+
+      \solution 
+
+\item PG 6.3 binary options (160)
+
 \end{note}
-
-
-
 \end{spacing}
 \end{document}
