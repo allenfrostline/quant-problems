@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void} \PYG{n+nf}{swap}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{i}\PYG{p}{,} \PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+      \PYG{n}{i} \PYG{o}{=} \PYG{n}{i} \PYG{o}{\PYGZca{}} \PYG{n}{j}\PYG{p}{;}
+      \PYG{n}{j} \PYG{o}{=} \PYG{n}{j} \PYG{o}{\PYGZca{}} \PYG{n}{i}\PYG{p}{;}
+      \PYG{n}{i} \PYG{o}{=} \PYG{n}{i} \PYG{o}{\PYGZca{}} \PYG{n}{j}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

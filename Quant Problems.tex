@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[11pt]{article}
 
 \usepackage{palatino}
 \usepackage{enumitem}
@@ -10,9 +10,11 @@
 \usepackage{mathtools}
 \usepackage{geometry}
 \usepackage{booktabs}
+\usepackage{minted}
 \usepackage{xpatch}
 \usepackage{color}
 \usepackage{soul}
+\usepackage{fontspec}
 
 \newcommand{\mathhl}[1]{\colorbox{yellow}{$\displaystyle #1$}}
 \newcommand{\E}{\text{E}}
@@ -37,7 +39,9 @@
 \renewcommand{\phi}{\varphi}
 \renewcommand{\iff}{\Leftrightarrow}
 
-\geometry{a4paper, margin=.5in, bottom=.4in, top=.4in}
+\setmonofont{Roboto Mono}
+\setminted{fontsize=\small}
+\geometry{a4paper, margin=.5in}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \newenvironment{note}{\begin{enumerate}[leftmargin=1em,topsep=0pt,noitemsep]}{\end{enumerate}}
@@ -504,15 +508,28 @@
 
 \item PG 6.3 binary options (160)
       
-      \solution 
+      \solution A vanilla European option ends in the money with probability $\mathcal{N}(d_2)$, which here is exactly the expected payoff of the option. Therefore, the price should be the discounted payoff, i.e. $c = \exp(-rt)\mathcal{N}(d_2)$. To hedge this option, we need $\Delta = \partial c / \partial S = \exp(-rt)\mathcal{N}'(d_2))(S\sigma\sqrt{\tau})^{-1}$. However, when the difference between $K$ and $S$ are not big, or when $\tau$ is small, the Delta is extremely volatile and thus cannot be used in hedging well.
 
 \item \hl{PG 6.3 exchange options (161)}
 
 \item PG 6.4 portfolio optimization (163)
 
+      \solution Minimize variance and solve for weights. The result is $6/7$ in A and $1/7$ in B.
+
 \item \hl{PG 6.4 value at risk (164)}
 
 \item PG 6.4 duration and convexity (165)
+
+      \solution Before solving this problem, let's review the definition of duration and convexity of bonds. The duration is defined as $D = -\frac{1}{p}\frac{\d p}{\d y}$ where $p$ is the price of the bond and $y$ is the yield to maturity. The convexity of a bond is defined as $C = \frac{1}{p^2}\frac{\d^2 p}{\d y^2}$. Using Taylor's expansion and we have approximation
+      $$
+      \frac{\Delta p}{p}\approx -D\Delta y
+      $$
+      Another important concept is the dollar duration, which is defined as
+      $$
+      \$D = -\frac{\d p}{\d y}\approx DP
+      $$
+      and thereby defined $DV01 = \$D / 10000$.
+      When a series of bonds form a portfolio, the portfolio duration is the weighted duration by prices, and the dollar duration is mere the sum of all dollar durations.
 
 \item \hl{PG 6.4 forward and futures (167)}
 
@@ -520,9 +537,28 @@
 
 \item PG 7.1 number swap (172)
 
+      \solution We may use $\pm$
+      \begin{minted}{c++}
+void swap(int &i, int &j) {
+      i = i + j;
+      j = i - j;
+      i = i - j;
+}
+      \end{minted}
+      Or, we can also use bitwise XOR
+      \begin{minted}{c++}
+void swap(int &i, int &j) {
+      i = i ^ j;
+      j = j ^ i;
+      i = i ^ j;
+}
+      \end{minted}
+
 \item \hl{PG 7.1 unique elements (173)}
 
 \item PG 7.1 Horner's algorithm (174)
+
+      \solution Instead of calculating multiplication for individual coefficients, we can iteratively use the results from previous multiplications.
 
 \item \hl{PG 7.1 moving average (174)}
 
