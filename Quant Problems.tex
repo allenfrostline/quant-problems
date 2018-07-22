@@ -15,7 +15,10 @@
 \usepackage{color}
 \usepackage{soul}
 \usepackage{fontspec}
+\usepackage{pifont}
 
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
 \newcommand{\mathhl}[1]{\colorbox{yellow}{$\displaystyle #1$}}
 \newcommand{\E}{\text{E}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -61,230 +64,233 @@
 
 \vspace{-1.5em}
 \begin{note}
+
+\item PG 2.2 river crossing (5)
+
 \item PG 4.1 coin toss game (61)
 
-      \solution Consider it as a sequential problem, then there're $2$ cases where A has more tops than B: A and B has the same number of tops in the first $n$ tosses, and then A tosses a top, or A has already more tops than B in the first $n$ tosses. Denote the probability of the condition of case $1$ as $x$ and the probability of case $2$ as $y$, then $2y + x = 1$. What we need is merely $y+x/2 = 1/2$.
+\solution Consider it as a sequential problem, then there're $2$ cases where A has more tops than B: A and B has the same number of tops in the first $n$ tosses, and then A tosses a top, or A has already more tops than B in the first $n$ tosses. Denote the probability of the condition of case $1$ as $x$ and the probability of case $2$ as $y$, then $2y + x = 1$. What we need is merely $y+x/2 = 1/2$.
 
 \item \hl{PG 4.1 card game (61)}
-      
-      \solution Let's calculate it sequentially. In total there're $P_{52}^2$ plays and $13$ kinds of my card with each kind for $4$ suits, and for each order $i\in\{1,2,\ldots,13\}$ we must have the dealer to take a card from $(i-1)\cdot 4$ kinds. Hence the probability is $16\sum_{i=1}^{13}(i-1) / P_{52}^2=(16\cdot 12 \cdot 13) / (2\cdot 52 \cdot 51) = 8/17$.
+
+\solution Let's calculate it sequentially. In total there're $P_{52}^2$ plays and $13$ kinds of my card with each kind for $4$ suits, and for each order $i\in\{1,2,\ldots,13\}$ we must have the dealer to take a card from $(i-1)\cdot 4$ kinds. Hence the probability is $16\sum_{i=1}^{13}(i-1) / P_{52}^2=(16\cdot 12 \cdot 13) / (2\cdot 52 \cdot 51) = 8/17$.
 
 \item \hl{PG 4.1 drunk passenger (62)}
-      
-      \solution The probability of my seat being untaken is equal to the probability that no one's ever taken it. This can be decomposed into three parts: \#1 takes his own seat, he takes my seat, or he takes any seat in between. While the first two cases are equivalent, the last case automatically lead to another drunk guy whose designated seat is \#1, so it's again symmetric. As a result the probability is $1/2$.
+
+\solution The probability of my seat being untaken is equal to the probability that no one's ever taken it. This can be decomposed into three parts: \#1 takes his own seat, he takes my seat, or he takes any seat in between. While the first two cases are equivalent, the last case automatically lead to another drunk guy whose designated seat is \#1, so it's again symmetric. As a result the probability is $1/2$.
 
 \item PG 4.1 $n$ points on a circle (63)
-      
-      \solution Take any point $i\in{1,2,\ldots,n}$ for example and consider if all other points are on the semicircle starting from point $i$. The probability is easy to calculate and it's $1/2^{n-1}$. Since all points are symmetric in consideration, the resulting probability should be $N/2^{n-1}$.
+
+\solution Take any point $i\in{1,2,\ldots,n}$ for example and consider if all other points are on the semicircle starting from point $i$. The probability is easy to calculate and it's $1/2^{n-1}$. Since all points are symmetric in consideration, the resulting probability should be $N/2^{n-1}$.
 
 \item PG 4.2 poker hands (65)
 
-      \solution There're in total $C_{52}^5$ cases. Four-of-a-kind: $13\cdot (52 - 4)$; Full-house: $C_{13}^2\cdot2\cdot C_4^3\cdot C_4^2$; Two-pair: $C_{13}^2\cdot(C_4^2)^2\cdot (52-4)$. The probabilities are merely these numbers devided by the total number of cases.
+\solution There're in total $C_{52}^5$ cases. Four-of-a-kind: $13\cdot (52 - 4)$; Full-house: $C_{13}^2\cdot2\cdot C_4^3\cdot C_4^2$; Two-pair: $C_{13}^2\cdot(C_4^2)^2\cdot (52-4)$. The probabilities are merely these numbers devided by the total number of cases.
 
 \item \hl{PG 4.2 hopping rabbit (66)}
-      
-      \solution We solve it recursively. Let the number of ways to reach stair $k$ be $f(k)$, then we have recursion $f(k+2)=f(k+1)+f(k)$ with initial conditions $f(0)=1$ and $f(1)=1$. It's, therefore, a standard Fibonacci sequence and we know $f(n)=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n\right]$.
+
+\solution We solve it recursively. Let the number of ways to reach stair $k$ be $f(k)$, then we have recursion $f(k+2)=f(k+1)+f(k)$ with initial conditions $f(0)=1$ and $f(1)=1$. It's, therefore, a standard Fibonacci sequence and we know $f(n)=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n\right]$.
 
 \item \hl{PG 4.2 screwy pirates 2 (67)}
 
-      \solution In order to forbid any $5$-combination of pirates to open the safe while allow exactly the rest $6$ to be able to do so, the number of locks needed is given by the number of suck combinations, either $6$ out of $11$ or $5$ out of $11$, and the number is $C_{11}^5$. Each lock must corresponds to at least $6$ keys and by symmetry the number of keys for each pirate should be $C_{11}^5\cdot 6/11$.
+\solution In order to forbid any $5$-combination of pirates to open the safe while allow exactly the rest $6$ to be able to do so, the number of locks needed is given by the number of suck combinations, either $6$ out of $11$ or $5$ out of $11$, and the number is $C_{11}^5$. Each lock must corresponds to at least $6$ keys and by symmetry the number of keys for each pirate should be $C_{11}^5\cdot 6/11$.
 
 \item \hl{PG 4.2 chess tournament (68)}
 
-      \solution In order to have $1$ to meet $2$ in the final, they must be in different half-games. This means a total number of $2(2^n-2)!(2^{n-1})^2$ cases, while in total there is $2^n!$ combinations. So the probability should be $2(2^n-2)!(2^{n-1})^2 / 2^n! = 2^{n-1}/(2^n-1)$.
+\solution In order to have $1$ to meet $2$ in the final, they must be in different half-games. This means a total number of $2(2^n-2)!(2^{n-1})^2$ cases, while in total there is $2^n!$ combinations. So the probability should be $2(2^n-2)!(2^{n-1})^2 / 2^n! = 2^{n-1}/(2^n-1)$.
 
 \item PG 4.2 application letters (69)
 
-      \solution This is called the dearrangement number and we can solve it recursively. Denote $f(k)$ as the number of ways to put all letters in wrong envelopes. Assume that letter $1$ is in some envelope $i\in\{2,3,\ldots,k\}$, then we have two cases: letter $k$ being in envelope $1$ or not. This leads to the recursion $f(k)=k[f(k-1)+f(k-2)]$ with initial conditions $f(1)=0$ and $f(2)=1$. Let $f(k):=k!\cdot g(k)$ and we can derive $g(k)$.
+\solution This is called the dearrangement number and we can solve it recursively. Denote $f(k)$ as the number of ways to put all letters in wrong envelopes. Assume that letter $1$ is in some envelope $i\in\{2,3,\ldots,k\}$, then we have two cases: letter $k$ being in envelope $1$ or not. This leads to the recursion $f(k)=k[f(k-1)+f(k-2)]$ with initial conditions $f(1)=0$ and $f(2)=1$. Let $f(k):=k!\cdot g(k)$ and we can derive $g(k)$.
 
 \item \hl{PG 4.2 birthday problem (71)}
 
-      \solution Let $\Pi_{i=0}^{k}(365-i)/365^k<1/2$. Enumeration tells that the smallest $k$ is $22$ and thus there should be at least $23$ people.
+\solution Let $\Pi_{i=0}^{k}(365-i)/365^k<1/2$. Enumeration tells that the smallest $k$ is $22$ and thus there should be at least $23$ people.
 
 \item PG 4.2 100th digit (71)
-      
-      \solution Notice that the binomial expansions of $(1+\sqrt{2})^{3000}$ and $(1-\sqrt{2})^{3000}$ have irrational, $\sqrt{2}$ to singular powers, yet with the opposite signs. This indicates that $(1+\sqrt{2})^{3000}+(1-\sqrt{2})^{3000}$ is an integer while since $|1-\sqrt{2}|<1$, we know $0<(1-\sqrt{2})^{3000}\ll10^{-100}$ and the 100th digit of $(1+\sqrt{2})^{3000}$ is $9$.
+
+\solution Notice that the binomial expansions of $(1+\sqrt{2})^{3000}$ and $(1-\sqrt{2})^{3000}$ have irrational, $\sqrt{2}$ to singular powers, yet with the opposite signs. This indicates that $(1+\sqrt{2})^{3000}+(1-\sqrt{2})^{3000}$ is an integer while since $|1-\sqrt{2}|<1$, we know $0<(1-\sqrt{2})^{3000}\ll10^{-100}$ and the 100th digit of $(1+\sqrt{2})^{3000}$ is $9$.
 
 \item \hl{PG 4.2 cubic of integer (72)}
-      
-      \solution We only consider the last two digits. There're 100 possible cases, namely from $00$ up until $99$, which can be written as $10a+b$. The binomial expansion of $(10a+b)^3=1000a^3+300a^2b+30ab^2+b^3$ indicates the only solution, which is $b=1$ and $a=7$. So the probability is $1\%$.
+
+\solution We only consider the last two digits. There're 100 possible cases, namely from $00$ up until $99$, which can be written as $10a+b$. The binomial expansion of $(10a+b)^3=1000a^3+300a^2b+30ab^2+b^3$ indicates the only solution, which is $b=1$ and $a=7$. So the probability is $1\%$.
 
 \item \hl{PG 4.3 boys and girls (73)}
-      
-      \solution Denote $A$ as having at least one boy out of the two. Denote $B$ as having two boys, $C$ as having a boy and a girl, and $D$ as having two girls. Also, we know $\P[A\mid B]=1$, $\P[A\mid C]=1$ and $\P[A\mid D]=0$. By Bayes' formula we have $\P[B\mid A]=\frac{\P[A\mid B]\cdot\P[B]}{\P[A\mid B]\cdot\P[B]+\P[A\mid C]\cdot\P[C]+\P[A\mid D]\cdot\P[D]}$.
 
-      \begin{nnote}
-      
-      \item We have $\P[B]=1/4$, $\P[C]=1/2$ and $\P[D]=1/4$. Therefore, By Bayes' formula we have $\P[B\mid A]=1/3$.
-      
-      \item Different from the previous problem, now define $A^-$ as the case where the \textbf{first} child is a boy. Now, $\P[A^-\mid B]=1$, $\P[A^-\mid C]=1/2$ and $\P[A^-\mid D]=0$. So $\P[B\mid A^-]=\frac{\P[A^-\mid B]\cdot\P[B]}{\P[A^-\mid B]\cdot\P[B]+\P[A^-\mid C]\cdot\P[C]+\P[A^-\mid D]\cdot\P[D]}=1/2$.
-      
-      \end{nnote}
+\solution Denote $A$ as having at least one boy out of the two. Denote $B$ as having two boys, $C$ as having a boy and a girl, and $D$ as having two girls. Also, we know $\P[A\mid B]=1$, $\P[A\mid C]=1$ and $\P[A\mid D]=0$. By Bayes' formula we have $\P[B\mid A]=\frac{\P[A\mid B]\cdot\P[B]}{\P[A\mid B]\cdot\P[B]+\P[A\mid C]\cdot\P[C]+\P[A\mid D]\cdot\P[D]}$.
+
+\begin{nnote}
+
+\item We have $\P[B]=1/4$, $\P[C]=1/2$ and $\P[D]=1/4$. Therefore, By Bayes' formula we have $\P[B\mid A]=1/3$.
+
+\item Different from the previous problem, now define $A^-$ as the case where the \textbf{first} child is a boy. Now, $\P[A^-\mid B]=1$, $\P[A^-\mid C]=1/2$ and $\P[A^-\mid D]=0$. So $\P[B\mid A^-]=\frac{\P[A^-\mid B]\cdot\P[B]}{\P[A^-\mid B]\cdot\P[B]+\P[A^-\mid C]\cdot\P[C]+\P[A^-\mid D]\cdot\P[D]}=1/2$.
+
+\end{nnote}
 
 \item \hl{PG 4.3 all-girl world (74)}
-      
-      \solution The fraction of girls is solely given by nature, and thus is $50\%$.
+
+\solution The fraction of girls is solely given by nature, and thus is $50\%$.
 
 \item \hl{PG 4.3 unfair coin (74)}
 
-      \solution Denote event $A$ as the coin tosses being the unfair one, $B$ as a consecutive sequence of $10$ tosses gives all heads. We know that $\P[A]=1/1000$ and $\P[\bar{A}]=999/1000$. We also know that $\P[B\mid A]=1$ and $\P[B\mid \bar{A}]=2^{-10}$. Then by Bayes' theorem, we have $\P[A\mid B]=\P[B\mid A]\cdot\P[A]\cdot(\P[B\mid A]\cdot\P[A]+\P[B\mid \bar{A}]\cdot\P[\bar{A}])^{-1}=0.506$.
+\solution Denote event $A$ as the coin tosses being the unfair one, $B$ as a consecutive sequence of $10$ tosses gives all heads. We know that $\P[A]=1/1000$ and $\P[\bar{A}]=999/1000$. We also know that $\P[B\mid A]=1$ and $\P[B\mid \bar{A}]=2^{-10}$. Then by Bayes' theorem, we have $\P[A\mid B]=\P[B\mid A]\cdot\P[A]\cdot(\P[B\mid A]\cdot\P[A]+\P[B\mid \bar{A}]\cdot\P[\bar{A}])^{-1}=0.506$.
 
 \item \hl{PG 4.3 fair probability from an unfair coin (75)}
 
-      \solution Toss twice and let $HT$ be win, $TH$ be loss, otherwise again.
+\solution Toss twice and let $HT$ be win, $TH$ be loss, otherwise again.
 
 \item \hl{PG 4.3 dart game (75)}
-      
-      \solution This is about the probability that the last throw does not lead to the best score. Any of the three throws can be in that case so the probability is $1/3$.
+
+\solution This is about the probability that the last throw does not lead to the best score. Any of the three throws can be in that case so the probability is $1/3$.
 
 \item \hl{PG 4.3 birthday line (76)}
-      
-      \solution Say that you choose to be in position $n\ge 1$, then the probability that you get that ticket is $\P[n]=\frac{365!}{365^{n-1}(365-n+1)!}\frac{n-1}{365}$. In order to have $P[n]>P[n-1]$ and $P[n]>P[n+1]$ we have $n=20$.
+
+\solution Say that you choose to be in position $n\ge 1$, then the probability that you get that ticket is $\P[n]=\frac{365!}{365^{n-1}(365-n+1)!}\frac{n-1}{365}$. In order to have $P[n]>P[n-1]$ and $P[n]>P[n+1]$ we have $n=20$.
 
 \item \hl{PG 4.3 dice order (78)}
-      
-      \solution The total number of events that're required is $n=C_6^3$ while the number of all possible events is $N=6^3$. So the probability is $\P = C_6^3 / 6^3 = 5/54$.
+
+\solution The total number of events that're required is $n=C_6^3$ while the number of all possible events is $N=6^3$. So the probability is $\P = C_6^3 / 6^3 = 5/54$.
 
 \item \hl{PG 4.3 monty hall (78)}
-      
-      \solution There're two cases.
 
-      \begin{nnote}
-            \item If I chose the door with car, which has a probability of $1/3$, then switching leads to $\P[\text{switch and car}\mid\text{car}]=0$.
+\solution There're two cases.
+
+\begin{nnote}
+      \item If I chose the door with car, which has a probability of $1/3$, then switching leads to $\P[\text{switch and car}\mid\text{car}]=0$.
             \item If I chose the door with goat, which has a probability of $2/3$, then switching leads to $\P[\text{switch and car}\mid\text{goat}]=1$.
-      \end{nnote}
+\end{nnote}
 
-      Therefore, $\P[\text{switch and win}]=2/3$.
+Therefore, $\P[\text{switch and win}]=2/3$.
 
 \item PG 4.3 amoeba population (79)
 
-      \solution Solve the fixed point of the generating function $f(x)=(1+x+x^2+x^3)/4$. The only reasonable solution is $x=\sqrt{2}-1$.
+\solution Solve the fixed point of the generating function $f(x)=(1+x+x^2+x^3)/4$. The only reasonable solution is $x=\sqrt{2}-1$.
 
 \item \hl{PG 4.3 candies in a jar (79)}
-      
-      \solution If blue is the last, then the conditional probability that green is the last among all red and green candies is $\P_1=3/4$. If green is the last, then the conditional probability that blue is the last among all red and blue candies is $\P_2=2/3$. As a result, the probability that all reds end before blue and green is $\P=\P_1/3+\P_2/2=1/4+1/3=7/12$.
+
+\solution If blue is the last, then the conditional probability that green is the last among all red and green candies is $\P_1=3/4$. If green is the last, then the conditional probability that blue is the last among all red and blue candies is $\P_2=2/3$. As a result, the probability that all reds end before blue and green is $\P=\P_1/3+\P_2/2=1/4+1/3=7/12$.
 
 \item \hl{PG 4.3 coin toss game (80)}
-      
-      \solution Let's say the probability is $\P[A]$. Then $\P[B]=1-\P[A]$. We condition on $A$'s first toss. If it's a tail, then it's become the opposite case where $B$ is the first one to toss, and thus $\P[A\mid T]=\P[B]=1-\P[A]$. If it's a head, then we have two sub-cases: (a) if $B$ tosses a tail, then $B$'s won; (b) is $B$ tosses a head, then the game starts again. So we have $\P[A\mid H]=0+(1-\P[A\mid H])/2$. Together with these two equations we have $\P[A]=\P[A\mid H]/2 + \P[A\mid T]/2 = 4/9$. This should be smaller than $1/2$ because $A$ can never win in the first toss, while $B$ can.
+
+\solution Let's say the probability is $\P[A]$. Then $\P[B]=1-\P[A]$. We condition on $A$'s first toss. If it's a tail, then it's become the opposite case where $B$ is the first one to toss, and thus $\P[A\mid T]=\P[B]=1-\P[A]$. If it's a head, then we have two sub-cases: (a) if $B$ tosses a tail, then $B$'s won; (b) is $B$ tosses a head, then the game starts again. So we have $\P[A\mid H]=0+(1-\P[A\mid H])/2$. Together with these two equations we have $\P[A]=\P[A\mid H]/2 + \P[A\mid T]/2 = 4/9$. This should be smaller than $1/2$ because $A$ can never win in the first toss, while $B$ can.
 
 \item PG 4.3 russian roulette series (81)
-      
-      \solution We solve it one by one. 
 
-      \begin{nnote}
-      \item No it does not matter. The probability is always $1/2$. 
-      \item Let the probability be $p$ if we choose to play first, then to loss means $p=1/6 + 5/6\cdot (1-p)$, so $p=6/11$. Therefore, we should choose to play second which gives a loss probability of $5/11$.
-      \item It's just $2/6$ and $2/5$. You definitely should spin.
-      \item Say that the $2$ bullets are in bezels $1$ and $2$. Then the opponent can have chosen anywhere between $3$ and $6$, so the probability that I can live is $3/4$ if I don't spin. In contrast, if I spin, the probability should be indifferent to what he's chosen and the living probability is $4/6=2/3$, which is less. So I should not spin.
-      \end{nnote}
+\solution We solve it one by one. 
+
+\begin{nnote}
+\item No it does not matter. The probability is always $1/2$. 
+\item Let the probability be $p$ if we choose to play first, then to loss means $p=1/6 + 5/6\cdot (1-p)$, so $p=6/11$. Therefore, we should choose to play second which gives a loss probability of $5/11$.
+\item It's just $2/6$ and $2/5$. You definitely should spin.
+\item Say that the $2$ bullets are in bezels $1$ and $2$. Then the opponent can have chosen anywhere between $3$ and $6$, so the probability that I can live is $3/4$ if I don't spin. In contrast, if I spin, the probability should be indifferent to what he's chosen and the living probability is $4/6=2/3$, which is less. So I should not spin.
+\end{nnote}
 
 \item \hl{PG 4.3 aces (82)}
-      
-      \solution Total number of events is $N=\frac{52!}{(13!)^4}$. The total number of events where each player has an ace is $n=4!\cdot\frac{48!}{(12!)^4}$. So the probability is $n/N=\frac{4!\cdot 48!\cdot(13!)^4}{52!\cdot (12!)^4}=\frac{13^4\cdot 24}{52\cdot 51\cdot 50\cdot 49}=0.105$.
+
+\solution Total number of events is $N=\frac{52!}{(13!)^4}$. The total number of events where each player has an ace is $n=4!\cdot\frac{48!}{(12!)^4}$. So the probability is $n/N=\frac{4!\cdot 48!\cdot(13!)^4}{52!\cdot (12!)^4}=\frac{13^4\cdot 24}{52\cdot 51\cdot 50\cdot 49}=0.105$.
 
 \item PG 4.3 gambler's ruin problem (83)
 
-      \solution Let $\P_i$ be the winning probability starting from fortune $i$, then $\P_i=\P_{i-1}p+\P_{i+1}q$, which together with boundary conditions $\P_0=0$ and $\P_N=1$ gives
-      $$
-      \P_i=\begin{cases}
-      \frac{1-(q/p)^i}{1-(q/p)^N} & \text{if }p\neq 1/2,\\
-      i/N & \text{if }p=1/2.
-      \end{cases}
-      $$
+\solution Let $\P_i$ be the winning probability starting from fortune $i$, then $\P_i=\P_{i-1}p+\P_{i+1}q$, which together with boundary conditions $\P_0=0$ and $\P_N=1$ gives
+$$
+\P_i=\begin{cases}
+\frac{1-(q/p)^i}{1-(q/p)^N} & \text{if }p\neq 1/2,\\
+i/N & \text{if }p=1/2.
+\end{cases}
+$$
 
 \item \hl{PG 4.3 basketball scores (84)}
 
-      \solution Denote $(n,k)$ as $n$ throws with $k$ scores. Then $\P[(3,1)]=\P[(3,2)]=1/2$. Further, we have
+\solution Denote $(n,k)$ as $n$ throws with $k$ scores. Then $\P[(3,1)]=\P[(3,2)]=1/2$. Further, we have
 
-      \begin{nnote}
-      \item $\P[(4,1)]=\P[(4,1)\mid(3,1)]\P[(3,1)]=2/3\cdot 1/2=1/3$;
-      \item $\P[(4,2)]=\P[(4,2)\mid(3,1)]\P[(3,1)]+\P[(4,2)\mid(3,2)]\P[(3,2)]=1/3\cdot 1/2 + 1/3\cdot 1/2=1/3$;
-      \item $\P[(4,3)]=\P[(4,3)\mid (3,2)]\P[(3,2)] = 2/3\cdot 1/2 = 1/3$.
-      \end{nnote}
+\begin{nnote}
+\item $\P[(4,1)]=\P[(4,1)\mid(3,1)]\P[(3,1)]=2/3\cdot 1/2=1/3$;
+\item $\P[(4,2)]=\P[(4,2)\mid(3,1)]\P[(3,1)]+\P[(4,2)\mid(3,2)]\P[(3,2)]=1/3\cdot 1/2 + 1/3\cdot 1/2=1/3$;
+\item $\P[(4,3)]=\P[(4,3)\mid (3,2)]\P[(3,2)] = 2/3\cdot 1/2 = 1/3$.
+\end{nnote}
 
-      So we guess that $\P[(n,k)]\equiv (n-1)^{-1}$. By induction this is proved, and thus the answer is $1/99$.
+So we guess that $\P[(n,k)]\equiv (n-1)^{-1}$. By induction this is proved, and thus the answer is $1/99$.
 
 \item PG 4.3 cars on road (85)
-      
-      \solution Solve $(1-p)^4=1-609/625$ and we have $p=3/5$.
+
+\solution Solve $(1-p)^4=1-609/625$ and we have $p=3/5$.
 
 \item PG 4.4 meeting probability (88)
 
-      \solution The probability is the area of $\abs{X-Y}\le 5$, and thus is $\P=(60^2-55^2)/60^2=23/144$.
+\solution The probability is the area of $\abs{X-Y}\le 5$, and thus is $\P=(60^2-55^2)/60^2=23/144$.
 
 \item \hl{PG 4.4 probability of triangle (89)}
 
-      \solution Assume the first cut is $x$ and the second $y$. To make it possible to form a triangle, we need:
+\solution Assume the first cut is $x$ and the second $y$. To make it possible to form a triangle, we need:
 
-      \begin{nnote}
-      \item $\max\{x,y\}>1/2$;
-      \item $\min\{x,y\}<1/2$;
-      \item $\abs{y-x}<1/2$.
-      \end{nnote}
+\begin{nnote}
+\item $\max\{x,y\}>1/2$;
+\item $\min\{x,y\}<1/2$;
+\item $\abs{y-x}<1/2$.
+\end{nnote}
 
-      Therefore, we can calculate the area and get the probability as $\P=1/4$.
+Therefore, we can calculate the area and get the probability as $\P=1/4$.
 
 \item \hl{PG 4.4 property of Poisson process (90)}
-      
-      \solution Exponential waiting time is memoriless both forward and backward time: $f(t)=\lambda e^{-\lambda t}$. The expected waiting time is $10$ minutes for both.
+
+\solution Exponential waiting time is memoriless both forward and backward time: $f(t)=\lambda e^{-\lambda t}$. The expected waiting time is $10$ minutes for both.
 
 \item \hl{PG 4.4 moments of normal distribution (91)}
-      
-      \solution We have the central moments of standard normal distribution as $\mu_1=0$, $\mu_2=1$, $\mu_3=0$ and $\mu_4=3$. More generally, we have $\mu_{2k}=(2k-1)!!$ and $\mu_{2k+1}=0$ for all $k\in\N$. The $k$-th moment is calculated by taking the $k$-th derivative of $M(t)=\E[e^{tX}]$.
+
+\solution We have the central moments of standard normal distribution as $\mu_1=0$, $\mu_2=1$, $\mu_3=0$ and $\mu_4=3$. More generally, we have $\mu_{2k}=(2k-1)!!$ and $\mu_{2k+1}=0$ for all $k\in\N$. The $k$-th moment is calculated by taking the $k$-th derivative of $M(t)=\E[e^{tX}]$.
 
 \item PG 4.5 connecting noodles (93)
 
-      \solution Assume we have $n$ noodles, i.e. $2n$ ends, then there're in total $C_{2n}^2=n(2n-1)$ combinations in which $n$ makes $1$ circle. So we have $\E[f(n)]=\E[f(n-1)]+(2n-1)^{-1}$.
+\solution Assume we have $n$ noodles, i.e. $2n$ ends, then there're in total $C_{2n}^2=n(2n-1)$ combinations in which $n$ makes $1$ circle. So we have $\E[f(n)]=\E[f(n-1)]+(2n-1)^{-1}$.
 
 \item PG 4.5 optimal hedge ratio (94)
 
-      \solution Assume we short $\Delta$ shares of $B$, then $\Var[A-\Delta B]=\sigma_A^2+\Delta^2\sigma_B^2-2\Delta\sigma_A\sigma_B\rho$. Take the first derivative of $\Delta$ to this equation and evaluate it to zero, then we have $\Delta\sigma_B^2=\sigma_A\sigma_B\rho\Rightarrow \Delta=\rho\sigma_A/\sigma_B$.
+\solution Assume we short $\Delta$ shares of $B$, then $\Var[A-\Delta B]=\sigma_A^2+\Delta^2\sigma_B^2-2\Delta\sigma_A\sigma_B\rho$. Take the first derivative of $\Delta$ to this equation and evaluate it to zero, then we have $\Delta\sigma_B^2=\sigma_A\sigma_B\rho\Rightarrow \Delta=\rho\sigma_A/\sigma_B$.
 
 \item \hl{PG 4.5 dice game (94)}
 
-      \solution With $1/2$ probability we have expected payoff $\E_1=2$; with the other $1/2$ probability we have $\E_2=5+\E$. So we have $\E=\E_1/2+\E_2/2 = 7/2+\E/2 \Rightarrow \E=7$.
+\solution With $1/2$ probability we have expected payoff $\E_1=2$; with the other $1/2$ probability we have $\E_2=5+\E$. So we have $\E=\E_1/2+\E_2/2 = 7/2+\E/2 \Rightarrow \E=7$.
 
 \item \hl{PG 4.5 card game (95)}
 
-      \solution Define $5$ regions devided by the $4$ aces, then the probability of a card being in any region is $1/5$, and thus the expected position of the first ace is $\E=1+48/5=10.6$ (which is really smart).
+\solution Define $5$ regions devided by the $4$ aces, then the probability of a card being in any region is $1/5$, and thus the expected position of the first ace is $\E=1+48/5=10.6$ (which is really smart).
 
 \item PG 4.5 sum of random variables (96)
-      
-      \solution This is the area in a unit hyper-cube, that is, $\P = 1\times1\times\frac{1}{2}\times\frac{1}{3}\times\cdots\times\frac{1}{n}=1/n!$ (Also, we can use $\P[\sum_{i=1}^n x_i < 1]=\int_0^1 \P[\sum_{i=1}^{n-1} x_i < 1 - x_n]\d x_n = \P[\sum_{i=1}^{n-1} x_i < 1] / n = \cdots = 1/n!$).
+
+\solution This is the area in a unit hyper-cube, that is, $\P = 1\times1\times\frac{1}{2}\times\frac{1}{3}\times\cdots\times\frac{1}{n}=1/n!$ (Also, we can use $\P[\sum_{i=1}^n x_i < 1]=\int_0^1 \P[\sum_{i=1}^{n-1} x_i < 1 - x_n]\d x_n = \P[\sum_{i=1}^{n-1} x_i < 1] / n = \cdots = 1/n!$).
 
 \item \hl{PG 4.5 coupon collection (97)}
 
-      \solution We solve part A and B separately.
+\solution We solve part A and B separately.
 
-      \begin{nnote}
-      \item Part A. Assume the expected number of tries is $\E[X_n]$ to get the $n$-th kind of coupon in a sequence, then, since $\E[X_n]=\frac{N}{N-n+1}$ and the total number of tries is merely the sum, we have $\E[X]=\sum_{n=1}^N\E[X_i]=\sum_{n=1}^N\frac{N}{N-n+1}=N(1^{-1}+2^{-1}+\cdot+N^{-1})$.
-      \item Part B. Define inticator variable $I_i$ as $1$ if at least $1$ coupon is of type $1$ in the $n$-coupon set and $0$ if there's not. Then we know $\P[I_i=0]=(\frac{N-1}{N})^n$ for any $i$. This gives $\E[I_i]=1\cdot \P[I_i=1]=1-\P[I_i=0]=1-(\frac{N-1}{N})^n$. Also we have the total number of types is $Y=\sum_{i=1}^n I_i$ and thus $\E[Y]=\sum_{i=1}^n\E[I_i]=1-N(\frac{N-1}{N})^n$.
-      \end{nnote}
+\begin{nnote}
+\item Part A. Assume the expected number of tries is $\E[X_n]$ to get the $n$-th kind of coupon in a sequence, then, since $\E[X_n]=\frac{N}{N-n+1}$ and the total number of tries is merely the sum, we have $\E[X]=\sum_{n=1}^N\E[X_i]=\sum_{n=1}^N\frac{N}{N-n+1}=N(1^{-1}+2^{-1}+\cdot+N^{-1})$.
+\item Part B. Define inticator variable $I_i$ as $1$ if at least $1$ coupon is of type $1$ in the $n$-coupon set and $0$ if there's not. Then we know $\P[I_i=0]=(\frac{N-1}{N})^n$ for any $i$. This gives $\E[I_i]=1\cdot \P[I_i=1]=1-\P[I_i=0]=1-(\frac{N-1}{N})^n$. Also we have the total number of types is $Y=\sum_{i=1}^n I_i$ and thus $\E[Y]=\sum_{i=1}^n\E[I_i]=1-N(\frac{N-1}{N})^n$.
+\end{nnote}
 
 \item \hl{PG 4.5 joint default probability (98)}
 
-      \solution The largest probability to have at least one bond to default is $50\%+30\%=80\%$ which requires $\rho=-1$.
+\solution The largest probability to have at least one bond to default is $50\%+30\%=80\%$ which requires $\rho=-1$.
 
 \item PG 4.6 expected value of max and min (99)
 
-      \solution For any $n>0$ we have $F(z)=\P[Z_n \le z]=z^n\Rightarrow f(z)=nz^{n-1}$ and thus $\E[Z_n] = n\int_0^1 z^n\d z = \frac{n}{n+1}$. Symmetrically, we have $\E[Y_n] = \frac{1}{n+1}$.
+\solution For any $n>0$ we have $F(z)=\P[Z_n \le z]=z^n\Rightarrow f(z)=nz^{n-1}$ and thus $\E[Z_n] = n\int_0^1 z^n\d z = \frac{n}{n+1}$. Symmetrically, we have $\E[Y_n] = \frac{1}{n+1}$.
 
 \item PG 4.6 correlation of max and min (100)
 
-      \solution We need $\E[Z]$, $\E[Y]$, $\E[YZ]$, $\std[Z]$ and $\std[Y]$. We already have $\E[Z]=2/3$ and $\E[Y]=1/3$ from the previous question. We also have $\E[Z^2]=n\int_0^1 z^{n+1}\d z = \frac{n}{n+2}=1/2$ and thus $\std[Z]=\sqrt{\E[Z^2]-\E[Z]^2}=\sqrt{1/2 - 4/9}=\sqrt{1/18}$. Symmetrically we have $\std[Y]=\std[Z]=\sqrt{1/18}$. Lastly, we have $\E[YZ]=\E[X_1X_2]=\E[X_1]\E[X_2]=1/4$ because of independence. As a conclusion, $\Cov[Z,Y]=\E[YZ]-\E[Y]\E[Z]=1/4-2/9=1/36$ and $\Corr[Z,Y]=\Cov[Z,Y]/18=1/2$.
+\solution We need $\E[Z]$, $\E[Y]$, $\E[YZ]$, $\std[Z]$ and $\std[Y]$. We already have $\E[Z]=2/3$ and $\E[Y]=1/3$ from the previous question. We also have $\E[Z^2]=n\int_0^1 z^{n+1}\d z = \frac{n}{n+2}=1/2$ and thus $\std[Z]=\sqrt{\E[Z^2]-\E[Z]^2}=\sqrt{1/2 - 4/9}=\sqrt{1/18}$. Symmetrically we have $\std[Y]=\std[Z]=\sqrt{1/18}$. Lastly, we have $\E[YZ]=\E[X_1X_2]=\E[X_1]\E[X_2]=1/4$ because of independence. As a conclusion, $\Cov[Z,Y]=\E[YZ]-\E[Y]\E[Z]=1/4-2/9=1/36$ and $\Corr[Z,Y]=\Cov[Z,Y]/18=1/2$.
 
 \item PG 4.6 random ants (102)
 
-      \solution This is merely the expected value of the maximum of $n=500$ i.i.d. uniform r.v.s. which we already calculated in problem on pg. 99, i.e. $\E[\max X]=\frac{n}{n+1} = \frac{500}{501}$.
+\solution This is merely the expected value of the maximum of $n=500$ i.i.d. uniform r.v.s. which we already calculated in problem on pg. 99, i.e. $\E[\max X]=\frac{n}{n+1} = \frac{500}{501}$.
 
 \item PG 5.1 gambler's ruin problem (107)
-      
-      \solution Assume the winning probability starting from \$$1$ is $a_1$, and similarly define $a_2$, $a_3$ and $a_0$. Then $a_0=0$, $a_3=1$, $a_1=2/3\cdot a_2 + 1/3\cdot a_0$ and $a_2 = 1/3\cdot a_1 + 2/3\cdot a_3$. Finally we have $a_1=4/7$.
+
+\solution Assume the winning probability starting from \$$1$ is $a_1$, and similarly define $a_2$, $a_3$ and $a_0$. Then $a_0=0$, $a_3=1$, $a_1=2/3\cdot a_2 + 1/3\cdot a_0$ and $a_2 = 1/3\cdot a_1 + 2/3\cdot a_3$. Finally we have $a_1=4/7$.
 
 \item PG 5.1 dice question (108)
-      
-      \solution We use conditional probability. Denote $F$ as the sum of first throw, and $A$ being $A$ wins, then $\P[A] = \P[A\mid F=12]\cdot\P[F=12] + \P[A\mid F=7]\cdot\P[F=7] + \P[A\mid F\not\in\{7,12\}]\cdot\P[F\not\in\{7,12\}]=7/13$.
+
+\solution We use conditional probability. Denote $F$ as the sum of first throw, and $A$ being $A$ wins, then $\P[A] = \P[A\mid F=12]\cdot\P[F=12] + \P[A\mid F=7]\cdot\P[F=7] + \P[A\mid F\not\in\{7,12\}]\cdot\P[F\not\in\{7,12\}]=7/13$.
 
 \item \hl{PG 5.1 coin triplets (109)}
 
@@ -292,207 +298,207 @@
 
 \item PG 5.3 dice game (123)
 
-      \solution In the third throw we have $1/6$ probability for each result $x$, which leads to the expected value $\E[V_3]=3.5$, while we're not necessarily optimal to choose to throw the third time. Actually, our possible values for the second throw are
-      $$
-      V_2 = \begin{cases}
-      3.5 & \text{if we get $1,2,3$},\\
-      4 & \text{if we get $4$},\\
-      5 & \text{if we get $5$},\\
-      6 & \text{if we get $6$}\\
-      \end{cases}
-      $$
-      and each has probability $1/6$, so $\E[V_2]=4.25$. Further, conditional on the first throw, we can actually have better choices, namely
-      $$
-      V_1 = \begin{cases}
-      4.25 & \text{if we get $1,2,3,4$},\\
-      5 & \text{if we get $5$},\\
-      6 & \text{if we get $6$}\\
-      \end{cases}
-      $$
-      and thus $\E[V_1]=14/3$.
+\solution In the third throw we have $1/6$ probability for each result $x$, which leads to the expected value $\E[V_3]=3.5$, while we're not necessarily optimal to choose to throw the third time. Actually, our possible values for the second throw are
+$$
+V_2 = \begin{cases}
+3.5 & \text{if we get $1,2,3$},\\
+4 & \text{if we get $4$},\\
+5 & \text{if we get $5$},\\
+6 & \text{if we get $6$}\\
+\end{cases}
+$$
+and each has probability $1/6$, so $\E[V_2]=4.25$. Further, conditional on the first throw, we can actually have better choices, namely
+$$
+V_1 = \begin{cases}
+4.25 & \text{if we get $1,2,3,4$},\\
+5 & \text{if we get $5$},\\
+6 & \text{if we get $6$}\\
+\end{cases}
+$$
+and thus $\E[V_1]=14/3$.
 
 \item \hl{PG 5.3 world series (123)}
 
 \item PG 5.3 dynamic dice game (126)
-      
-      \solution First we calculate the expected game return $n$. Assume we continue playing whenever we have no more than $n$ money, then $\sum_{i=1}^5 (n+i)/6 = 5n/6 + 2.5 > n$, which gives $n < 15$. Therefore, we need to calculate all $\E[f(n)]$ where $n=0,1,\ldots,19$ and $f(\cdot)$ is the return. For $n=15,16,\ldots,19$, we have $\E[f(n)]=f(n)=n$; for $n=0,1,\ldots,14$, we have $\E[f(n)]=\sum_{i=1}^5 \E[f(n+i)]/6$. By backward-induction we have $\E[f(0)]=6.15$ which is exactly the expected amount of money when our current value is zero.
+
+\solution First we calculate the expected game return $n$. Assume we continue playing whenever we have no more than $n$ money, then $\sum_{i=1}^5 (n+i)/6 = 5n/6 + 2.5 > n$, which gives $n < 15$. Therefore, we need to calculate all $\E[f(n)]$ where $n=0,1,\ldots,19$ and $f(\cdot)$ is the return. For $n=15,16,\ldots,19$, we have $\E[f(n)]=f(n)=n$; for $n=0,1,\ldots,14$, we have $\E[f(n)]=\sum_{i=1}^5 \E[f(n+i)]/6$. By backward-induction we have $\E[f(0)]=6.15$ which is exactly the expected amount of money when our current value is zero.
 
 \item \hl{PG 5.3 dynamic card game (127)}
 
 \item \hl{PG 5.4 Brownian motion (129)}
 
-      \solution We solve these problems one by one. 
+\solution We solve these problems one by one. 
 
-      \textbf{A}. The Brownian motion is defined as the stochastic process that starts from $B(0)=0$ and has normal i.i.d. increments with zero mean and variance equal to its length $t$. Some important properties are:
+\textbf{A}. The Brownian motion is defined as the stochastic process that starts from $B(0)=0$ and has normal i.i.d. increments with zero mean and variance equal to its length $t$. Some important properties are:
 
-      \begin{nnote}
-      \item continuous
-      \item $\E[B(t)]=0$, $\E[B(t)^2]=t$, $B(t)\sim\mathcal{N}(0,t)$
-      \item martingale: $\E[B(t+s)\mid B(t)]=B(t)$
-      \item Markov: $\E[B(t+0)\mid B(s) \forall s \in [0,t)]=\E[B(t+0)\mid B(t)]$
-      \item $Y(t)=B(t)^2-t$ is a martingale
-      \item $Z(t)=\exp(\lambda B(t)-\lambda^2t/2)$ is a martingale (called \textbf{exponential martingale})
-      \end{nnote}
+\begin{nnote}
+\item continuous
+\item $\E[B(t)]=0$, $\E[B(t)^2]=t$, $B(t)\sim\mathcal{N}(0,t)$
+\item martingale: $\E[B(t+s)\mid B(t)]=B(t)$
+\item Markov: $\E[B(t+0)\mid B(s) \forall s \in [0,t)]=\E[B(t+0)\mid B(t)]$
+\item $Y(t)=B(t)^2-t$ is a martingale
+\item $Z(t)=\exp(\lambda B(t)-\lambda^2t/2)$ is a martingale (called \textbf{exponential martingale})
+\end{nnote}
 
-      \textbf{B}. The correlation of a Brownian motion and its square is zero, because $\Cov[B,B^2]=\E[B^3]-\E[B]\E[B^2]=0 - 0 = 0$.
+\textbf{B}. The correlation of a Brownian motion and its square is zero, because $\Cov[B,B^2]=\E[B^3]-\E[B]\E[B^2]=0 - 0 = 0$.
 
-      \textbf{C}. To calculate the probability of $B_1>0$ and $B_2<0$, we need, by independence of increments, $B_1>0$ and $B_2-B_1<-B_1$ where $B_1$ and $B_2-B_1$ are independent. Therefore, we equivalently have two i.i.d. normal random variables $X$ and $Y$, and need to calculate $\P[Y>X>0]=\P[X>0]\cdot\P[Y>0]\cdot\P[Y>X] = 1/8$.
+\textbf{C}. To calculate the probability of $B_1>0$ and $B_2<0$, we need, by independence of increments, $B_1>0$ and $B_2-B_1<-B_1$ where $B_1$ and $B_2-B_1$ are independent. Therefore, we equivalently have two i.i.d. normal random variables $X$ and $Y$, and need to calculate $\P[Y>X>0]=\P[X>0]\cdot\P[Y>0]\cdot\P[Y>X] = 1/8$.
 
 \item PG 5.4 stopping time / first passage time (131)
-      
-      \solution We solve them separately. 
 
-      \textbf{A}. As we said above, $B_t^2-t$ is a martingale, so is $B_T^2-T$. Therefore, we have $\E[B_T^2-T]=0$. Because we assume $T$ the time of first passage, we have $\abs{B_t}=1$ and thus $\E[T] = \E[B_T^2] = 1$.
+\solution We solve them separately. 
 
-      \textbf{B}. By reflection principle, we know 
-      $$
-      \P[\tau_x \le t] = \P[\tau_x \le t, W(t) > x] + \P[\tau_x \le t, W(t) \le x] = 2 \P[\tau_x \le t, W(t) > x] = 2(1 - \mathcal{N}(x / \sqrt{t})).
-      $$
-      Therefore we have, by taking derivative w.r.t. $t$,
-      $$
-      f_{\tau_x}(t) = \frac{x\exp(-x^2/2t)}{t\sqrt{2\pi t}},\quad \forall x > 0.
-      $$
-      To answer the question what the expected time to reach any $x>0$, we're not usign the same process. Instead, we can show from \textbf{A} that the expected first passage time to reach $\alpha>0$ or $-\beta<0$ is $\E[\tau_{\alpha,-\beta}]=\alpha\beta$. Therefore, we have $\E[\tau_x]\equiv\E[\tau_{x,-\infty}]=x\cdot\infty=\infty$.
+\textbf{A}. As we said above, $B_t^2-t$ is a martingale, so is $B_T^2-T$. Therefore, we have $\E[B_T^2-T]=0$. Because we assume $T$ the time of first passage, we have $\abs{B_t}=1$ and thus $\E[T] = \E[B_T^2] = 1$.
 
-      \textbf{C}. Assume the probability of hitting $3$ first is $\P_3$, then since $B_T$ is a martingale for $T$ being the first passage time, we know $3\P_3 + (-5)(1- \P_3)=0$ which gives $\P_3 = 5/8$. Generally, we have $\P_{\alpha}=\alpha/(\alpha + \beta)$. For $B_t=W_t+mt$, since $\exp(\lambda W_t + \lambda^2t/2)$ is a martingale (see exponential martingale), we know $X_t = \exp(\lambda B_t + \lambda^2t/2)$ is also a martingale and thus $\E[X_t]=0$. Notice this holds for any $\lambda$ and thus we can let $\lambda = -2m$, which gives $\E[X_t] = \E[\exp(-2mB_t)]=1$. We know a martingale stopped at the stopping time is also a martingale, i.e. $X_T$ is still a martingale for $T$ being the time first $B_t$ hits $3$ or $-5$, so $\E[X_T] = \E[\exp(-2mB_T)]=\P_3\exp(-2m\cdot 3) + (1-\P_3)\exp(2m\cdot 5) = \P_3\exp(-6m)+(1-\P_3)\exp(10m)=1$. Therefore, we have $\P_3 = \frac{\exp(10m)-1}{\exp(10m)-\exp(-6m)}$.
+\textbf{B}. By reflection principle, we know 
+$$
+\P[\tau_x \le t] = \P[\tau_x \le t, W(t) > x] + \P[\tau_x \le t, W(t) \le x] = 2 \P[\tau_x \le t, W(t) > x] = 2(1 - \mathcal{N}(x / \sqrt{t})).
+$$
+Therefore we have, by taking derivative w.r.t. $t$,
+$$
+f_{\tau_x}(t) = \frac{x\exp(-x^2/2t)}{t\sqrt{2\pi t}},\quad \forall x > 0.
+$$
+To answer the question what the expected time to reach any $x>0$, we're not usign the same process. Instead, we can show from \textbf{A} that the expected first passage time to reach $\alpha>0$ or $-\beta<0$ is $\E[\tau_{\alpha,-\beta}]=\alpha\beta$. Therefore, we have $\E[\tau_x]\equiv\E[\tau_{x,-\infty}]=x\cdot\infty=\infty$.
 
-      \textbf{D}. Again we have $\E[\exp(-2mB_t)]=1$ while here we have $m=1$, and thus $\E[\exp(-2B_t)]=\P_{-1}\exp(2) + (1-\P_{-1})\exp(-\infty)=\exp(2)\P_{-2}=1$. So $\P_{-1}=\exp(-2)$.
+\textbf{C}. Assume the probability of hitting $3$ first is $\P_3$, then since $B_T$ is a martingale for $T$ being the first passage time, we know $3\P_3 + (-5)(1- \P_3)=0$ which gives $\P_3 = 5/8$. Generally, we have $\P_{\alpha}=\alpha/(\alpha + \beta)$. For $B_t=W_t+mt$, since $\exp(\lambda W_t + \lambda^2t/2)$ is a martingale (see exponential martingale), we know $X_t = \exp(\lambda B_t + \lambda^2t/2)$ is also a martingale and thus $\E[X_t]=0$. Notice this holds for any $\lambda$ and thus we can let $\lambda = -2m$, which gives $\E[X_t] = \E[\exp(-2mB_t)]=1$. We know a martingale stopped at the stopping time is also a martingale, i.e. $X_T$ is still a martingale for $T$ being the time first $B_t$ hits $3$ or $-5$, so $\E[X_T] = \E[\exp(-2mB_T)]=\P_3\exp(-2m\cdot 3) + (1-\P_3)\exp(2m\cdot 5) = \P_3\exp(-6m)+(1-\P_3)\exp(10m)=1$. Therefore, we have $\P_3 = \frac{\exp(10m)-1}{\exp(10m)-\exp(-6m)}$.
+
+\textbf{D}. Again we have $\E[\exp(-2mB_t)]=1$ while here we have $m=1$, and thus $\E[\exp(-2B_t)]=\P_{-1}\exp(2) + (1-\P_{-1})\exp(-\infty)=\exp(2)\P_{-2}=1$. So $\P_{-1}=\exp(-2)$.
 
 \item PG 5.4 Ito's lemma (135) 
-      
-      \solution First let's recite the Ito's lemma:
-      $$
-      \d f = \left(\frac{\partial f}{\partial t} + \alpha \frac{\partial f}{\partial x} + \frac{\beta^2}{2}\frac{\partial^2 f}{\partial x^2}\right)\d t + \beta \frac{\partial f}{\partial x}\d w
-      $$
-      which directly gives the drift rate $\d f / \d t$.
 
-      \textbf{A}. Since $Z_t  = \sqrt{t}B_t$, we have for constant $t$, $Z_t$ is symmetric around $0$ and thus has $\E[Z_t]=0$ and $\Var[Z_t]=t^2$. However, to determine whether $Z_t$ is a martingale or not we need either to use its definition, which says conditional expectation is equal to the current expectation, or to prove that it's a Wiener process with no drift term. Use Ito's lemma and we can prove $Z_t$ has non-zero drift term, so it's not a martingale.
+\solution First let's recite the Ito's lemma:
+$$
+\d f = \left(\frac{\partial f}{\partial t} + \alpha \frac{\partial f}{\partial x} + \frac{\beta^2}{2}\frac{\partial^2 f}{\partial x^2}\right)\d t + \beta \frac{\partial f}{\partial x}\d w
+$$
+which directly gives the drift rate $\d f / \d t$.
 
-      \textbf{B}. Similar to $\textbf{A}$, we need to use Ito's lemma and can actually show $f=W^3$ has a non-zero drift term, so it's not a martingale either.
+\textbf{A}. Since $Z_t  = \sqrt{t}B_t$, we have for constant $t$, $Z_t$ is symmetric around $0$ and thus has $\E[Z_t]=0$ and $\Var[Z_t]=t^2$. However, to determine whether $Z_t$ is a martingale or not we need either to use its definition, which says conditional expectation is equal to the current expectation, or to prove that it's a Wiener process with no drift term. Use Ito's lemma and we can prove $Z_t$ has non-zero drift term, so it's not a martingale.
+
+\textbf{B}. Similar to $\textbf{A}$, we need to use Ito's lemma and can actually show $f=W^3$ has a non-zero drift term, so it's not a martingale either.
 
 \item \hl{PG 6.1 price direction of options (137)}
 
-      \solution The co-movements are summarized below.
-      
-      \begin{center}
-      \begin{tabular}{ccccc} \toprule
-      variable          & Eu. call     & Eu. put      & Am. call     & Am. put      \\ \midrule    
-      $S \uparrow$      & $\uparrow$   & $\downarrow$ & $\uparrow$   & $\downarrow$ \\             
-      $K \uparrow$      & $\downarrow$ & $\uparrow$   & $\downarrow$ & $\uparrow$   \\             
-      $\tau \uparrow$   & ?            & ?            & $\uparrow$   & $\uparrow$   \\             
-      $\sigma \uparrow$ & $\uparrow$   & $\uparrow$   & $\uparrow$   & $\uparrow$   \\             
-      $r \uparrow$      & $\uparrow$   & $\downarrow$ & $\uparrow$   & $\downarrow$ \\             
-      $D \uparrow$      & $\downarrow$ & $\uparrow$   & $\downarrow$ & $\uparrow$   \\ \bottomrule 
-      \end{tabular}
-      \end{center}
+\solution The co-movements are summarized below.
+
+\begin{center}
+\begin{tabular}{ccccc} \toprule
+variable          & Eu. call     & Eu. put      & Am. call     & Am. put      \\ \midrule    
+$S \uparrow$      & $\uparrow$   & $\downarrow$ & $\uparrow$   & $\downarrow$ \\             
+$K \uparrow$      & $\downarrow$ & $\uparrow$   & $\downarrow$ & $\uparrow$   \\             
+$\tau \uparrow$   & ?            & ?            & $\uparrow$   & $\uparrow$   \\             
+$\sigma \uparrow$ & $\uparrow$   & $\uparrow$   & $\uparrow$   & $\uparrow$   \\             
+$r \uparrow$      & $\uparrow$   & $\downarrow$ & $\uparrow$   & $\downarrow$ \\             
+$D \uparrow$      & $\downarrow$ & $\uparrow$   & $\downarrow$ & $\uparrow$   \\ \bottomrule 
+\end{tabular}
+\end{center}
 
 \item \hl{PG 6.1 put-call parity (138)}
-      
-      \solution First let's cite the put-call parity below. For European options:
-      $$
-      c - p = S - K\exp(-r\tau)
-      $$
-      and for American options:
-      $$
-      C - P \in [S - K\exp(-r\tau) - D, S - K\exp(-r\tau)].
-      $$
-      This can be proved easily if we consider the LHS as a forward with payoff $\max(S_T-K, 0) - \max(K - S_T, 0)=S_T - K$. By discounting using the risk-free rate we have the equation.
+
+\solution First let's cite the put-call parity below. For European options:
+$$
+c - p = S - K\exp(-r\tau)
+$$
+and for American options:
+$$
+C - P \in [S - K\exp(-r\tau) - D, S - K\exp(-r\tau)].
+$$
+This can be proved easily if we consider the LHS as a forward with payoff $\max(S_T-K, 0) - \max(K - S_T, 0)=S_T - K$. By discounting using the risk-free rate we have the equation.
 
 \item \hl{PG 6.1 American v.s. European options (139)}
 
-      \solution We've got two ways to answer this question.
+\solution We've got two ways to answer this question.
 
-      \begin{nnote}
-      \item First is that exercising a call is giving its intrinsic value $S-K$ while neglecting its time value $K - K\exp(-r\tau)$ and the protection put's value $p$. Instead of exercising it early, it's better off to sell it before maturity.
-      \item Second, we try to use the Jensen's inequality. It's clear that the $C(S)=(S-K)^{+}$ is a convex function, and thus we have $\E[C(S_T)]\ge C(\E[S_T])$.
+\begin{nnote}
+\item First is that exercising a call is giving its intrinsic value $S-K$ while neglecting its time value $K - K\exp(-r\tau)$ and the protection put's value $p$. Instead of exercising it early, it's better off to sell it before maturity.
+\item Second, we try to use the Jensen's inequality. It's clear that the $C(S)=(S-K)^{+}$ is a convex function, and thus we have $\E[C(S_T)]\ge C(\E[S_T])$.
 
-      \end{nnote}
+\end{nnote}
 
 \item \hl{PG 6.1 BS differential equation (142)}
 
 \item PG 6.1 BS formula (143)
-      
-      \solution First let's cite the original BS formula:
-      $$
-      c = S\exp(-y\tau)\mathcal{N}(d_1) - K\exp(-r\tau)\mathcal{N}(d_2)\quad \text{and}\quad p = K\exp(-r\tau)\mathcal{N}(-d_2) - S\exp(-y\tau)\mathcal{N}(-d_1)
-      $$
-      where
-      $$
-      d_1 = \frac{\ln(S/K) + (r-y+\sigma^2/2)\tau}{\sigma\sqrt{\tau}}
-      $$
-      and
-      $$
-      d_2 = d_1 - \sigma\sqrt{\tau}.
-      $$
-      Note that if the underlying asset is an option, $y=0$; if the underlying asset is a future then $y=r$; if the underlying asset is a foreign currency, then $y=r_f$ where $r_f$ is the foreign risk-free rate.
 
-      \textbf{A}. Now that the asset is an European option, we have $y=0$, which requires the following assumptions:
-      \begin{nnote}
-      \item There is no arbitrage, boundary, cost, dividend or tax.
-      \item Stock price is GBM.
-      \item All securities are perfectly divisible.
-      \item The risk-free rate is constant and known.
-      \end{nnote}
+\solution First let's cite the original BS formula:
+$$
+c = S\exp(-y\tau)\mathcal{N}(d_1) - K\exp(-r\tau)\mathcal{N}(d_2)\quad \text{and}\quad p = K\exp(-r\tau)\mathcal{N}(-d_2) - S\exp(-y\tau)\mathcal{N}(-d_1)
+$$
+where
+$$
+d_1 = \frac{\ln(S/K) + (r-y+\sigma^2/2)\tau}{\sigma\sqrt{\tau}}
+$$
+and
+$$
+d_2 = d_1 - \sigma\sqrt{\tau}.
+$$
+Note that if the underlying asset is an option, $y=0$; if the underlying asset is a future then $y=r$; if the underlying asset is a foreign currency, then $y=r_f$ where $r_f$ is the foreign risk-free rate.
 
-      \textbf{B}. According to the risk-neutral probability measure, the price of an option should be equal to the discounted value of the payoff. This means $V(t) = \exp(-rt)\E[V(T)\mid S(t)]$ when $r$ is a constant. Since $S$ follows a GBM, i.e.
-      $$
-      \d S = rS\d t + \sigma S\d w,
-      $$
-      by applying Ito's lemma, we have
-      $$
-      \d (\ln S) = (r - \sigma^2/2)\d t + \sigma\d w\Rightarrow \ln S\sim\mathcal{N}(\ln S_T + (r - \sigma^2/2)\tau, \sigma^2\tau)
-      $$
-      and thus $S_T = S\exp[(r-\sigma^2/2)\tau + \sigma\sqrt{T}\epsilon]$ where $\epsilon\sim\mathcal{N}(0,1)$. This shall be enough to derive the BS formula. 
-      
-      \textbf{C}. Skipped.
+\textbf{A}. Now that the asset is an European option, we have $y=0$, which requires the following assumptions:
+\begin{nnote}
+\item There is no arbitrage, boundary, cost, dividend or tax.
+\item Stock price is GBM.
+\item All securities are perfectly divisible.
+\item The risk-free rate is constant and known.
+\end{nnote}
 
-      \textbf{D}. The option should value \$$1/H$ because whenever a \$$1$-stock hits \$$H$ it pays \$$1$. By no arbitrage assumption we know it must worth $1/H$ of the stock value.      
+\textbf{B}. According to the risk-neutral probability measure, the price of an option should be equal to the discounted value of the payoff. This means $V(t) = \exp(-rt)\E[V(T)\mid S(t)]$ when $r$ is a constant. Since $S$ follows a GBM, i.e.
+$$
+\d S = rS\d t + \sigma S\d w,
+$$
+by applying Ito's lemma, we have
+$$
+\d (\ln S) = (r - \sigma^2/2)\d t + \sigma\d w\Rightarrow \ln S\sim\mathcal{N}(\ln S_T + (r - \sigma^2/2)\tau, \sigma^2\tau)
+$$
+and thus $S_T = S\exp[(r-\sigma^2/2)\tau + \sigma\sqrt{T}\epsilon]$ where $\epsilon\sim\mathcal{N}(0,1)$. This shall be enough to derive the BS formula. 
 
-      \textbf{E}. Assume $S\sim\text{GBM}(r, \sigma^2)$, then the derivative has payoff $f(S) = 1/S$ and thus by Ito's lemma we have
-      $$
-      \d f = \left(\frac{\partial f}{\partial t} + \frac{\partial f}{\partial S}r S + \frac{\partial^2 f}{\partial S^2}\frac{\sigma^2 S^2}{2}\right)\d t + \frac{\partial f}{\partial S}\sigma S\d w = (\sigma^2 - r)f \d t - \sigma f \d w
-      $$
-      and thus
-      $$
-      \ln f = \left(\frac{\sigma^2}{2} - r\right)\d t - \sigma\d w.
-      $$
-      Therefore, we have 
-      $$
-      \ln f(T) = \ln f(t) + \mathcal{N}((\sigma^2/2 - r)\tau, \sigma^2\tau)
-      $$
-      and thus we know $\E[f(T)] = \E[\exp(\ln f(T))] = \exp(\sigma^2 \tau  - r \tau) / S_T$. Discount this value using risk-free interest rate $r$ and we have $V = \exp(\sigma^2\tau -2r\tau) / S$.
+\textbf{C}. Skipped.
+
+\textbf{D}. The option should value \$$1/H$ because whenever a \$$1$-stock hits \$$H$ it pays \$$1$. By no arbitrage assumption we know it must worth $1/H$ of the stock value.      
+
+\textbf{E}. Assume $S\sim\text{GBM}(r, \sigma^2)$, then the derivative has payoff $f(S) = 1/S$ and thus by Ito's lemma we have
+$$
+\d f = \left(\frac{\partial f}{\partial t} + \frac{\partial f}{\partial S}r S + \frac{\partial^2 f}{\partial S^2}\frac{\sigma^2 S^2}{2}\right)\d t + \frac{\partial f}{\partial S}\sigma S\d w = (\sigma^2 - r)f \d t - \sigma f \d w
+$$
+and thus
+$$
+\ln f = \left(\frac{\sigma^2}{2} - r\right)\d t - \sigma\d w.
+$$
+Therefore, we have 
+$$
+\ln f(T) = \ln f(t) + \mathcal{N}((\sigma^2/2 - r)\tau, \sigma^2\tau)
+$$
+and thus we know $\E[f(T)] = \E[\exp(\ln f(T))] = \exp(\sigma^2 \tau  - r \tau) / S_T$. Discount this value using risk-free interest rate $r$ and we have $V = \exp(\sigma^2\tau -2r\tau) / S$.
 \item PG 6.2 delta (149)
 
-      \solution Before we solve the problem, let's review the definitions of the greeks:
-      \begin{nnote}
-      \item Delta: $\Delta = \partial f / \partial S$
-      \item Gamma: $\Gamma = \partial^2 f \partial S^2$
-      \item Theta: $\Theta = \partial f / \partial t$
-      \item Vega: $\nu = \partial f / \partial \sigma$
-      \item Rho: $\rho = \partial f / \partial r$
-      \end{nnote}
-      \textbf{A}. For an European call option with value $c = S\exp(-yt)\mathcal{N}(d_1) - K\exp(-rt)\mathcal{N}(d_2)$ we have
-      $$
-      \Delta = \partial c / \partial S = \exp(-yt)\mathcal{N}(d_1) = \mathcal{N}(d_1)
-      $$
-      when there is no dividend payment. However, here cannot directly take out the second part because we also have $S$ in $d_1$ and $d_2$. In fact, since $d_2 = d_1 -\sigma\sqrt{\tau}$ we know that
-      $$
-      \partial d_1 / \partial S = \partial d_2 / \partial S
-      $$
-      and thus it can be proved that $\mathcal{N}'(d_2) = \mathcal{N}'(d_1)\exp((r-y)\tau)S / K$, which eventually means the last two parts with $\mathcal{N}'$ in $\Delta$ cancels out, so the result is still $\Delta = \mathcal{N}(d_1)$.
+\solution Before we solve the problem, let's review the definitions of the greeks:
+\begin{nnote}
+\item Delta: $\Delta = \partial f / \partial S$
+\item Gamma: $\Gamma = \partial^2 f \partial S^2$
+\item Theta: $\Theta = \partial f / \partial t$
+\item Vega: $\nu = \partial f / \partial \sigma$
+\item Rho: $\rho = \partial f / \partial r$
+\end{nnote}
+\textbf{A}. For an European call option with value $c = S\exp(-yt)\mathcal{N}(d_1) - K\exp(-rt)\mathcal{N}(d_2)$ we have
+$$
+\Delta = \partial c / \partial S = \exp(-yt)\mathcal{N}(d_1) = \mathcal{N}(d_1)
+$$
+when there is no dividend payment. However, here cannot directly take out the second part because we also have $S$ in $d_1$ and $d_2$. In fact, since $d_2 = d_1 -\sigma\sqrt{\tau}$ we know that
+$$
+\partial d_1 / \partial S = \partial d_2 / \partial S
+$$
+and thus it can be proved that $\mathcal{N}'(d_2) = \mathcal{N}'(d_1)\exp((r-y)\tau)S / K$, which eventually means the last two parts with $\mathcal{N}'$ in $\Delta$ cancels out, so the result is still $\Delta = \mathcal{N}(d_1)$.
 
-      \textbf{B}. When there is no dividend and the option is at-the-money, we know that the Delta is given by
-      $$
-      \Delta = \mathcal{N}(d_1) = \mathcal{N}\left(\left(\frac{r}{\sigma} + \frac{\sigma}{2}\right)\sqrt{\tau}\right)
-      $$
-      which is always above $1/2$ and gets larger as $\tau$ gets larger, i.e. with the option coming to maturity the Delta will get smaller.
+\textbf{B}. When there is no dividend and the option is at-the-money, we know that the Delta is given by
+$$
+\Delta = \mathcal{N}(d_1) = \mathcal{N}\left(\left(\frac{r}{\sigma} + \frac{\sigma}{2}\right)\sqrt{\tau}\right)
+$$
+which is always above $1/2$ and gets larger as $\tau$ gets larger, i.e. with the option coming to maturity the Delta will get smaller.
 
-      \textbf{C}. We need Delta hedging. This means with every $1$ option bought we also short $\Delta$ stocks.
+\textbf{C}. We need Delta hedging. This means with every $1$ option bought we also short $\Delta$ stocks.
 
-      \textbf{D}. Since it's at-the-money, we have $S=K$. Also, for small $r$ a typical volatility $\sigma< 40\%$ and maturity $\tau < 1/4$ year both tells that the value of the option is approximated by
-      $$
-      c = S\exp(-yt)\mathcal{N}(d_1) - K\exp(-rt)\mathcal{N}(d_2) \approx S(\mathcal{N}(d_1) - \mathcal{N}(d_2)) \approx \frac{\sigma\sqrt{\tau}S}{\sqrt{2\pi}} \approx 0.4\sigma S\sqrt{\tau}.
-      $$
+\textbf{D}. Since it's at-the-money, we have $S=K$. Also, for small $r$ a typical volatility $\sigma< 40\%$ and maturity $\tau < 1/4$ year both tells that the value of the option is approximated by
+$$
+c = S\exp(-yt)\mathcal{N}(d_1) - K\exp(-rt)\mathcal{N}(d_2) \approx S(\mathcal{N}(d_1) - \mathcal{N}(d_2)) \approx \frac{\sigma\sqrt{\tau}S}{\sqrt{2\pi}} \approx 0.4\sigma S\sqrt{\tau}.
+$$
 
 \item \hl{PG 6.2 gamma (152)}
 
@@ -502,34 +508,34 @@
 
 \item PG 6.3 bull spread (159)
 
-      \solution The value is bounded by $K_2 - K_1$ and $(K_2 - K_1) S / K_2$. \hl{???}
+\solution The value is bounded by $K_2 - K_1$ and $(K_2 - K_1) S / K_2$. \hl{???}
 
 \item \hl{PG 6.3 straddle (159)}
 
 \item PG 6.3 binary options (160)
-      
-      \solution A vanilla European option ends in the money with probability $\mathcal{N}(d_2)$, which here is exactly the expected payoff of the option. Therefore, the price should be the discounted payoff, i.e. $c = \exp(-rt)\mathcal{N}(d_2)$. To hedge this option, we need $\Delta = \partial c / \partial S = \exp(-rt)\mathcal{N}'(d_2))(S\sigma\sqrt{\tau})^{-1}$. However, when the difference between $K$ and $S$ are not big, or when $\tau$ is small, the Delta is extremely volatile and thus cannot be used in hedging well.
+
+\solution A vanilla European option ends in the money with probability $\mathcal{N}(d_2)$, which here is exactly the expected payoff of the option. Therefore, the price should be the discounted payoff, i.e. $c = \exp(-rt)\mathcal{N}(d_2)$. To hedge this option, we need $\Delta = \partial c / \partial S = \exp(-rt)\mathcal{N}'(d_2))(S\sigma\sqrt{\tau})^{-1}$. However, when the difference between $K$ and $S$ are not big, or when $\tau$ is small, the Delta is extremely volatile and thus cannot be used in hedging well.
 
 \item \hl{PG 6.3 exchange options (161)}
 
 \item PG 6.4 portfolio optimization (163)
 
-      \solution Minimize variance and solve for weights. The result is $6/7$ in A and $1/7$ in B.
+\solution Minimize variance and solve for weights. The result is $6/7$ in A and $1/7$ in B.
 
 \item \hl{PG 6.4 value at risk (164)}
 
 \item PG 6.4 duration and convexity (165)
 
-      \solution Before solving this problem, let's review the definition of duration and convexity of bonds. The duration is defined as $D = -\frac{1}{p}\frac{\d p}{\d y}$ where $p$ is the price of the bond and $y$ is the yield to maturity. The convexity of a bond is defined as $C = \frac{1}{p^2}\frac{\d^2 p}{\d y^2}$. Using Taylor's expansion and we have approximation
-      $$
-      \frac{\Delta p}{p}\approx -D\Delta y
-      $$
-      Another important concept is the dollar duration, which is defined as
-      $$
-      \$D = -\frac{\d p}{\d y}\approx DP
-      $$
-      and thereby defined $DV01 = \$D / 10000$.
-      When a series of bonds form a portfolio, the portfolio duration is the weighted duration by prices, and the dollar duration is mere the sum of all dollar durations.
+\solution Before solving this problem, let's review the definition of duration and convexity of bonds. The duration is defined as $D = -\frac{1}{p}\frac{\d p}{\d y}$ where $p$ is the price of the bond and $y$ is the yield to maturity. The convexity of a bond is defined as $C = \frac{1}{p^2}\frac{\d^2 p}{\d y^2}$. Using Taylor's expansion and we have approximation
+$$
+\frac{\Delta p}{p}\approx -D\Delta y
+$$
+Another important concept is the dollar duration, which is defined as
+$$
+\$D = -\frac{\d p}{\d y}\approx DP
+$$
+and thereby defined $DV01 = \$D / 10000$.
+When a series of bonds form a portfolio, the portfolio duration is the weighted duration by prices, and the dollar duration is mere the sum of all dollar durations.
 
 \item \hl{PG 6.4 forward and futures (167)}
 
@@ -537,34 +543,81 @@
 
 \item PG 7.1 number swap (172)
 
-      \solution We may use $\pm$
-      \begin{minted}{c++}
+\solution We may use $\pm$
+\begin{minted}{c++}
 void swap(int &i, int &j) {
       i = i + j;
       j = i - j;
       i = i - j;
 }
-      \end{minted}
-      Or, we can also use bitwise XOR
-      \begin{minted}{c++}
+\end{minted}
+Or, we can also use bitwise XOR
+\begin{minted}{c++}
 void swap(int &i, int &j) {
       i = i ^ j;
       j = j ^ i;
       i = i ^ j;
 }
-      \end{minted}
+\end{minted}
 
 \item \hl{PG 7.1 unique elements (173)}
 
 \item PG 7.1 Horner's algorithm (174)
 
-      \solution Instead of calculating multiplication for individual coefficients, we can iteratively use the results from previous multiplications.
+\solution Instead of calculating multiplication for individual coefficients, we can iteratively use the results from previous multiplications.
 
 \item \hl{PG 7.1 moving average (174)}
 
 \item PG 7.1 sorting algorithm (174)
 
-      \solution
+\solution The sorting algorithms are summarized as below.
+\begin{center}
+\begin{tabular}{ccclc} \toprule
+algorithm & avg. time   & space  & description                                              & stability \\ \midrule    
+insertion & $O(n^2)$    & $O(1)$ & insert unsorted into sorted                              & \cmark    \\             
+selection & $O(n^2)$    & $O(1)$ & select the largest and so on                             & \xmark    \\             
+heap      & $O(n\lg n)$ & $O(1)$ & build a heap and iteratively take away the max i.e. root & \xmark    \\             
+bubble    & $O(n^2)$    & $O(1)$ & swap neighbors s.t. they are in order                    & \cmark    \\             
+merge     & $O(n\lg n)$ & $O(n)$ & sort two halves and merge                                & \cmark    \\             
+quick     & $O(n\lg n)$ & $O(n)$ & use pivots for classification                            & \xmark    \\ \bottomrule 
+\end{tabular}
+\end{center}
+
+\item \hl{PG 7.1 random permutation (176)}
+
+\item \hl{PG 7.1 search algorithm (177)}
+
+\item \hl{PG 7.1 Fibonacci numbers (179)}
+
+\item \hl{PG 7.1 maximum contiguous subarray (180)}
+
+\item \hl{PG 7.2 power of two (182)}
+
+\item \hl{PG 7.2 multiplications by $7$ (182)}
+
+\item \hl{PG 7.2 probability simulation (182)}
+
+\item PG 7.2 poisonous wine (183)
+
+\solution Since $2^10=1024>1000$, ten mice is enough to represent all wines and thus allow us to use these ten lab mice simultaneously and retrack the poisonous wine by binary coding.
+
+\item PG 7.3 Monte Carlo simulation (184)
+
+\solution We mainly talk about \textbf{C} here. 
+\begin{nnote}
+\item antithetic variable: for each $\epsilon$, calculate the corresponding negative situation to reduce variance
+\item moment matching: rescale small sample s.t. its moments matches the population moments well
+\item control variate: if we have another variable $Y$ that has an analytical form, then we can use the same set of random numbers to estimate it first and offset the bias in estimation of $X$ by $\hat{X}' = \hat{X} + Y - \hat{Y}$
+\item importance sampling: use some fat-tailed distribution to adjust the span of the original distribution
+\item low-discrepancy sequence: use some random sequence instead of just random sample
+\end{nnote}
+
+\item \hl{PG 7.3 finite difference method (189)}
+
+\item HS 1.5 (10)
+
+\item HS 1.8 (11)
+
 
 \end{note}
 \end{spacing}
