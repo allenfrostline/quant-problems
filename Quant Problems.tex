@@ -65,7 +65,117 @@
 \vspace{-1.5em}
 \begin{note}
 
+\item \hl{PG 2.1 screwy pirates (3)}
+
+\item \hl{PG 2.1 tiger and sheep (4)}
+
 \item PG 2.2 river crossing (5)
+
+\solution By dynamci programming we can derive that the minimum total time is given by $T = \text{constant} + \min\{2c, b+d\}$ and thus here evaluated at $T = 10+4+3+2\times 2 = 17$.
+
+\item \hl{PG 2.2 birthday problem (5)}
+
+\item \hl{PG 2.2 card game (6)}
+
+\item \hl{PG 2.2 burning ropes (7)}
+
+\item \hl{PG 2.2 defective ball (7)}
+
+\item \hl{PG 2.2 trailing zeros (9)}
+
+\item \hl{PG 2.2 horse race (9)}
+
+\item \hl{PG 2.3 box packing (10)}
+
+\item \hl{PG 2.3 calendar cubes (11)}
+
+\item \hl{PG 2.3 door to offer (12)}
+
+\item \hl{PG 2.3 message delivery (13)}
+
+\item \hl{PG 2.3 last ball (13)}
+
+\item \hl{PG 2.3 light switches (14)}
+
+\item \hl{PG 2.3 quant salary (15)}
+
+\item \hl{PG 2.4 coin piles (16)}
+
+\item \hl{PG 2.4 mislabled bags (16)}
+
+\item \hl{PG 2.4 wise men (17)}
+
+\item \hl{PG 2.5 clock piles (18)}
+
+\item \hl{PG 2.5 missing integers (18)}
+
+\item \hl{PG 2.5 counterfeit coins I (19)}
+
+\item \hl{PG 2.5 glass balls (19)}
+
+\item \hl{PG 2.6 matching socks (21)}
+
+\item \hl{PG 2.6 handshakes (21)}
+
+\item \hl{PG 2.6 have we met before? (21)}
+
+\item \hl{PG 2.6 ants on a square (22)}
+
+\item \hl{PG 2.6 counterfeit coin II (22)}
+
+\item \hl{PG 2.7 prisoner problem (24)}
+
+\item \hl{PG 2.7 division by 9 (25)}
+
+\item \hl{PG 2.7 cameleon colors (26)}
+
+\item \hl{PG 2.8 coin split (27)}
+
+\item \hl{PG 2.8 chocolate bar (28)}
+
+\item \hl{PG 2.8 race track (29)}
+
+\item \hl{PG 2.9 irrational number (31)}
+
+\item \hl{PG 2.9 rainbow hats (31)}
+
+\item \hl{PG 3.1 basics of derivatives (33)}
+
+\item \hl{PG 3.1 maximum and minimum (34)}
+
+\item \hl{PG 3.1 L'Hospital's rule (35)}
+
+\item \hl{PG 3.2 basics of integration (36)}
+
+\item \hl{PG 3.2 application of integration (38)}
+
+\item \hl{PG 3.2 expected value (40)}
+
+\item \hl{PG 3.3 multiple integrals (41)}
+
+\item \hl{PG 3.4 Talor's theories (41)}
+
+\item \hl{PG 3.4 Newton's method (44)}
+
+\item \hl{PG 3.4 Langrange multipliers (45)}
+
+\item \hl{PG 3.5 separable differential equations (47)}
+
+\item \hl{PG 3.5 first-order LDEs (47)}
+
+\item \hl{PG 3.5 homogenous LDEs (48)}
+
+\item \hl{PG 3.5 nonhomogenous LDEs (49)}
+
+\item \hl{PG 3.6 vectors (50)}
+
+\item \hl{PG 3.6 QR decomposition (52)}
+
+\item \hl{PG 3.6 eigenvalues and eigenvectors (55)}
+
+\item \hl{PG 3.6 PSD/PD (56)}
+
+\item \hl{PG 3.6 generate correlated normal distribution (57)}
 
 \item PG 4.1 coin toss game (61)
 
@@ -508,7 +618,7 @@ $$
 
 \item PG 6.3 bull spread (159)
 
-\solution The value is bounded by $K_2 - K_1$ and $(K_2 - K_1) S / K_2$. \hl{???}
+\solution The value is bounded by $K_2 - K_1$ and $(K_2 - K_1) S / K_2$, the latter of which is given by cutting the payoff lines vertically at $S$.
 
 \item \hl{PG 6.3 straddle (159)}
 
@@ -614,9 +724,133 @@ quick     & $O(n\lg n)$ & $O(n)$ & use pivots for classification                
 
 \item \hl{PG 7.3 finite difference method (189)}
 
+\item \hl{HS 1.1 (9)}
+\item \hl{HS 1.2 (9)}
+\item \hl{HS 1.3 (9)}
+\item \hl{HS 1.4 (9)}
+
 \item HS 1.5 (10)
 
+\solution First separate the large piles of marbles into three $4$-marble piles and denote each pile as a combination of $1+3$. Weigh a pair from these three piles and conditioning on the results:
+\begin{nnote}
+\item If the two piles are of the same weight, the the odd marble is in the rest pile of $1+3$. Weigh the $3$ with a weighed sub-pile of $3$ and if they are equal, then the rest one is odd (2 weighs in total); if they're not equal, then the odd is in the $3$-marble sub-pile, weigh two of the three and we can tell (3 weighs).
+\item If the two piles are of different weights, then the odd marble is in either of the weighed $4$-marble piles. Now swap one $3$-marble pile with the rest one's, and weigh again. If they're still different, then the odd one is the one not swapped (2 weighs); if they're now equally heavy, then the odd one is in the sub-pile being swapped. Another weigh can tell the odd one (3 weighs).
+\end{nnote}
+
+\item \hl{HS 1.6 (10)}
+\item \hl{HS 1.7 (10)}
+
 \item HS 1.8 (11)
+
+\solution The ratio will always be $1/2$. No need of calculation.
+
+\item \hl{HS 1.9 (11)}
+\item \hl{HS 1.10 (11)}
+\item \hl{HS 1.11 (11)}
+\item \hl{HS 1.12 (11)}
+
+\item HS 1.13 (11)
+
+\solution $64$ has factors $1$, $2$, $4$, $8$, $16$, $32$ and $64$. So it's been switched seven times and eventually is illuminated.
+
+\item \hl{HS 1.14 (12)}
+\item \hl{HS 1.15 (12)}
+\item \hl{HS 1.16 (12)}
+\item \hl{HS 1.17 (12)}
+
+\item HS 1.18 (13)
+
+\solution There is a conclusion that for a pile of $3^k$ coins you need at most $k$ weighs to identify the odd one. You can prove it by induction. Therefore, split the $90$ coins by $81=27+27+27$ and $9$, then identify whether the odd coin is in the $81$-coin group by $2$ weighs. If so, you need another $\log_3 27=3$ trials; if not, you need $2$. So in total at most $\$500$ is paid.
+
+\item \hl{HS 1.19 (13)}
+\item \hl{HS 1.20 (13)}
+\item \hl{HS 1.21 (14)}
+\item \hl{HS 1.22 (14)}
+\item \hl{HS 1.23 (14)}
+\item \hl{HS 1.24 (14)}
+
+\item HS 1.25 (14)
+
+\solution Turn on two and turn off one of them after a minute. Then walk into the room and see which is on, which is off and which is warm but off.
+
+\item \hl{HS 1.26 (14)}
+
+\item HS 1.27 (14)
+
+\solution Denote this number as $X$ and we have
+$$
+X = 2a-1 = 3b-1 = 4c-1 = 5d-1 = 6e-1 = 7f-1 = 8g-1 = 9h-1 = 10i-1
+$$
+for some $a,b,\ldots,i\in\mathbb{Z}_+$.
+After simple analysis we can shorten this long equation into
+$$
+X = 6e-1 = 7f-1 = 8g-1 = 9h-1 = 10i-1
+$$
+and thus 
+$$
+X = 2520n-1
+$$
+for $n\in\mathbb{Z}_+$ and thus the minimum value is $X=2519$.
+
+
+\item \hl{HS 1.28 (15)}
+\item \hl{HS 1.29 (15)}
+\item \hl{HS 1.30 (15)}
+\item \hl{HS 1.31 (15)}
+
+\item HS 1.32 (15)
+
+\solution According to Archemides law, the lifting force, which is equal to the force of gravity of the expelled water, must be equal to the total force of gravity of the boat and the stone. Therefore, throwing the stone away is merely decreasing the water expelled by the same weight as the stone and thus the water level drops. Notice here we're talking about a very small stone so we don't need to consider the volume of it. However, even talking that into account the level will still drop, since the density of a stone must be larger than water and thus water re-expelled will still be less than before, and thus the level drops.
+
+\item \hl{HS 1.33 (16)}
+\item \hl{HS 1.34 (16)}
+\item \hl{HS 1.35 (16)}
+\item \hl{HS 1.36 (16)}
+
+\item HS 1.37 (17)
+
+\solution The speed of the light along the coastline, if we only consider $1/4$ revolution that starts from the position the light beam is at right angle toward the coastline, is a function of the angle revolved from the starting position, say $\theta$. The function $v(\theta)$ is given by
+$$
+v(\theta)\d t = 3\tan(\theta+\omega\d t)
+$$
+and thus
+$$
+v(\theta) = \lim_{\d t\to 0}3\frac{\tan(\theta+\omega\d t)}{\d t}=3\omega\sec(\theta)^2
+$$
+for $\theta\in[0,\pi/4)$, which has a domain of $[3\omega, +\infty)$.
+
+\item \hl{HS 1.38 (17)}
+\item \hl{HS 1.39 (17)}
+\item \hl{HS 1.40 (17)}
+\item \hl{HS 1.41 (17)}
+\item \hl{HS 1.42 (17)}
+\item \hl{HS 1.43 (18)}
+\item \hl{HS 1.44 (18)}
+\item \hl{HS 1.45 (18)}
+\item \hl{HS 1.46 (18)}
+\item \hl{HS 1.47 (18)}
+\item \hl{HS 1.48 (18)}
+\item \hl{HS 1.49 (19)}
+\item \hl{HS 1.50 (19)}
+\item \hl{HS 1.51 (19)}
+\item \hl{HS 1.52 (19)}
+\item \hl{HS 1.53 (19)}
+\item \hl{HS 1.54 (19)}
+\item \hl{HS 1.55 (19)}
+\item \hl{HS 1.56 (19)}
+\item \hl{HS 1.57 (20)}
+\item \hl{HS 1.58 (20)}
+\item \hl{HS 1.59 (20)}
+\item \hl{HS 1.60 (20)}
+\item \hl{HS 1.61 (20)}
+\item \hl{HS 1.62 (20)}
+\item \hl{HS 1.63 (20)}
+\item \hl{HS 1.64 (20)}
+\item \hl{HS 1.65 (21)}
+\item \hl{HS 1.66 (21)}
+\item \hl{HS 1.67 (21)}
+\item \hl{HS 1.68 (21)}
+
 
 
 \end{note}
