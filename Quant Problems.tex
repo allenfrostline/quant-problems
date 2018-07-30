@@ -809,15 +809,15 @@ for $n\in\mathbb{Z}_+$ and thus the minimum value is $X=2519$.
 
 \item HS 1.37 (17)
 
-\solution The speed of the light along the coastline, if we only consider $1/4$ revolution that starts from the position the light beam is at right angle toward the coastline, is a function of the angle revolved from the starting position, say $\theta$. The function $v(\theta)$ is given by
+\solution The speed of the light along the coastline, if we only consider $1/4$ revolution that starts from the position the light beam is at right angle toward the coastline, is a function of the angle revolved from the starting position, say $\theta$. The function $v(\theta)$ for $\theta\in[0,\pi/4)$ is given by
 $$
-v(\theta)\d t = 3\tan(\theta+\omega\d t)
+v(\theta)\d t = L\tan(\theta+\omega\d t)
 $$
 and thus
 $$
-v(\theta) = \lim_{\d t\to 0}3\frac{\tan(\theta+\omega\d t)}{\d t}=3\omega\sec(\theta)^2
+v(\theta) = \lim_{\d t\to 0}L\frac{\tan(\theta+\omega\d t)}{\d t}=L\omega\sec^2\theta.
 $$
-for $\theta\in[0,\pi/4)$, which has a domain of $[3\omega, +\infty)$.
+When $\tan\theta = 3 \Rightarrow \sec^2\theta=\tan^2\theta+1=10$ and thus $v(\theta)=L\omega\sec^2\theta=3\times \frac{2\pi}{60}\times 10=\pi$ miles per second.
 
 \item \hl{HS 1.38 (17)}
 \item \hl{HS 1.39 (17)}
@@ -827,17 +827,107 @@ for $\theta\in[0,\pi/4)$, which has a domain of $[3\omega, +\infty)$.
 \item \hl{HS 1.43 (18)}
 \item \hl{HS 1.44 (18)}
 \item \hl{HS 1.45 (18)}
-\item \hl{HS 1.46 (18)}
+
+\item HS 1.46 (18)
+
+\solution Denote the expected payoff when there're $x$ red and $y$ black cards as $\E(x,y)$, which is given by
+$$
+\E(x,y) = \begin{cases}
+0 & \text{if }x = 0,\\
+x & \text{if }y = 0,\\
+\max\{0, \frac{x}{x+y}(1+\E(x-1,y) + \frac{y}{x+y}(-1+\E(x,y-1))\} & \text{otherwise}
+\end{cases}
+$$
+then we can iteratively or recursively caculate $\E(26,26)$, in Python
+\begin{minted}{python}
+def E(x, y):
+    if x == 0:
+        return 0
+    if y == 0:
+        return x
+    t = x + y
+    rx = x / t
+    ry = y / t
+    return max(0, rx * (1 + E(x - 1, y)) + ry * (-1 + E(x, y - 1)))
+
+print(E(10, 10))
+\end{minted}
+or in C++ (where I implemented a cache for faster recursion) as below
+\begin{minted}{c++}
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+#define X 26
+#define Y 26
+#define value -1
+
+double cache[X+1][Y+1];
+
+void printMatrix() {
+    for (int i=0; i<X+1; ++i) {
+        for (int j=0; j<Y+1; ++j)
+            cout << cache[i][j] << " ";
+        cout << endl;
+    }
+}
+
+void fillMatrix() {
+    for (int i=0; i<X+1; ++i) {
+        for (int j=0; j<Y+1; ++j)
+            cache[i][j] = value;
+    }
+}
+
+double E(int x, int y) {
+    if (x == 0) return 0;
+    if (y == 0) return x;
+    if (cache[x][y] != value) return cache[x][y];
+    int t = x + y;
+    double rx = (double)x / (double)t;
+    double ry = (double)y / (double)t;
+    double ans = max(0., rx * (1 + E(x - 1, y)) + ry * (-1 + E(x, y - 1)));
+    cache[x][y] = ans;
+    return ans;
+}
+
+int main() {
+    fillMatrix();
+    cout << E(X, Y) << endl;
+    return 0;
+}
+\end{minted}
+which gives $\E(26,26)=2.62448$ eventually.
+
+
 \item \hl{HS 1.47 (18)}
 \item \hl{HS 1.48 (18)}
 \item \hl{HS 1.49 (19)}
 \item \hl{HS 1.50 (19)}
 \item \hl{HS 1.51 (19)}
-\item \hl{HS 1.52 (19)}
+
+\item HS 1.52 (19)
+
+\solution Light the first one on both ends, then it'll cost $30$ seconds to finish. Simultaneously light the second fuse on one end. When the first is finished (so after $30$ seconds), start light the second fuse's other end, and it will take another $15$ seconds to finish all. In total it's $45$ seconds.
+
 \item \hl{HS 1.53 (19)}
 \item \hl{HS 1.54 (19)}
 \item \hl{HS 1.55 (19)}
-\item \hl{HS 1.56 (19)}
+
+\item HS 1.56 (19)
+
+\solution We give a possible sulution as below:
+\begin{nnote}
+\item Day $1$: give him $1$
+\item Day $2$: give him $2$, take back $1$
+\item Day $3$: give him $1$
+\item Day $4$: give him $4$, take back $2$ and $1$
+\item Day $5$: give him $1$
+\item Day $6$: give him $2$, take back $1$
+\item Day $7$: give him $1$
+\end{nnote}
+and thus in sum we devide the gold bar into $7=1+2+4$.
+
 \item \hl{HS 1.57 (20)}
 \item \hl{HS 1.58 (20)}
 \item \hl{HS 1.59 (20)}
@@ -846,10 +936,104 @@ for $\theta\in[0,\pi/4)$, which has a domain of $[3\omega, +\infty)$.
 \item \hl{HS 1.62 (20)}
 \item \hl{HS 1.63 (20)}
 \item \hl{HS 1.64 (20)}
-\item \hl{HS 1.65 (21)}
-\item \hl{HS 1.66 (21)}
+
+\item HS 1.65 (21)
+
+\solution We need to express
+$$
+f(x) = \int_{t=x}^{\infty}\exp\left(-\frac{at^2}{2}+bt\right)\d t = \int_{t=x}^{\infty}\exp\left(-\frac{at^2-2bt}{2}\right)\d t = \frac{\exp(b^2/2a)}{\sqrt{a}}\int_{t=x}^{\infty}\exp\left(-\frac{(\sqrt{a}t-b/\sqrt{a})^2}{2}\right)\d\sqrt{a} t
+$$
+which is equivalently
+$$
+\frac{\sqrt{a}}{\exp(b^2/2a)}f(x) = \int_{t=\sqrt{a}x-b/\sqrt{a}}^{\infty}\exp\left(-\frac{t^2}{2}\right)\d t
+$$
+in the form of the CDF of normal distribution, i.e. 
+$$
+\Phi(x) = \int_{t=-\infty}^x\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{t^2}{2}\right)\d t.
+$$
+Now, since we know
+$$
+\bar{\Phi}(x) \equiv 1-\Phi(x) = \frac{1}{\sqrt{2\pi}}\int_{t=x}^{\infty}\exp\left(-\frac{t^2}{2}\right)\d t
+$$
+which gives
+$$
+\sqrt{2\pi}[1-\Phi(\sqrt{a}x-b/\sqrt{a})]=\int_{t=\sqrt{a}x-b/\sqrt{a}}^{\infty}\exp\left(-\frac{t^2}{2}\right)\d t = \frac{\sqrt{a}}{\exp(b^2/2a)}f(x)
+$$
+and thus
+$$
+f(x) = \exp(b^2/2a)\sqrt{2\pi/a}[1-\Phi(\sqrt{a}x-b/\sqrt{a})].
+$$
+
+\item HS 1.66 (21)
+
+\solution An easy while not intuitive question.
+$$
+\lim_{x\to\infty}\sqrt{x^2+x}-x = \lim_{x\to\infty}\frac{x}{\sqrt{x^2+x}+x} = \lim_{x\to\infty}\frac{1}{\sqrt{1+1/x}+1} = \frac{1}{2}.
+$$
+
+
 \item \hl{HS 1.67 (21)}
 \item \hl{HS 1.68 (21)}
+\item \hl{HS 2.1 (23)}
+\item HS 2.2 (23)
+\item \hl{HS 2.3 (23)}
+\item \hl{HS 2.4 (23)}
+\item \hl{HS 2.5 (24)}
+\item \hl{HS 2.6 (24)}
+\item HS 2.7 (24)
+\item \hl{HS 2.8 (24)}
+\item \hl{HS 2.9 (24)}
+\item \hl{HS 2.10 (24)}
+\item \hl{HS 2.11 (24)}
+\item \hl{HS 2.12 (24)}
+\item HS 2.13 (25)
+\item \hl{HS 2.14 (25)}
+\item \hl{HS 2.15 (26)}
+\item \hl{HS 2.16 (26)}
+\item \hl{HS 2.17 (26)}
+\item \hl{HS 2.18 (27)}
+\item HS 2.19 (27)
+\item \hl{HS 2.20 (27)}
+\item \hl{HS 2.21 (27)}
+\item \hl{HS 2.22 (27)}
+\item \hl{HS 2.23 (28)}
+\item \hl{HS 2.24 (28)}
+\item \hl{HS 2.25 (28)}
+\item \hl{HS 2.26 (28)}
+\item \hl{HS 2.27 (28)}
+\item \hl{HS 2.28 (28)}
+\item \hl{HS 2.29 (28)}
+\item \hl{HS 2.30 (29)}
+\item \hl{HS 2.31 (29)}
+\item \hl{HS 2.32 (29)}
+\item \hl{HS 2.33 (29)}
+\item \hl{HS 2.34 (29)}
+\item \hl{HS 2.35 (29)}
+\item \hl{HS 2.36 (30)}
+\item \hl{HS 2.37 (30)}
+\item \hl{HS 2.38 (30)}
+\item \hl{HS 2.39 (30)}
+\item \hl{HS 2.40 (30)}
+\item \hl{HS 2.41 (30)}
+\item \hl{HS 2.42 (30)}
+\item \hl{HS 2.43 (30)}
+\item \hl{HS 2.44 (30)}
+\item \hl{HS 2.45 (30)}
+\item \hl{HS 2.46 (31)}
+\item \hl{HS 2.47 (31)}
+\item \hl{HS 2.48 (31)}
+\item \hl{HS 2.49 (31)}
+\item \hl{HS 2.50 (31)}
+\item \hl{HS 2.51 (31)}
+\item \hl{HS 2.52 (31)}
+\item \hl{HS 2.53 (31)}
+\item \hl{HS 2.54 (31)}
+\item \hl{HS 2.55 (31)}
+\item \hl{HS 2.56 (32)}
+\item \hl{HS 2.57 (32)}
+\item \hl{HS 2.58 (32)}
+\item \hl{HS 2.59 (32)}
+\item \hl{HS 2.60 (32)}
 
 
 
