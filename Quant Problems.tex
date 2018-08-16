@@ -734,7 +734,7 @@ quick     & $O(n\lg n)$ & $O(n)$ & use pivots for classification                
 \solution First separate the large piles of marbles into three $4$-marble piles and denote each pile as a combination of $1+3$. Weigh a pair from these three piles and conditioning on the results:
 \begin{nnote}
 \item If the two piles are of the same weight, the the odd marble is in the rest pile of $1+3$. Weigh the $3$ with a weighed sub-pile of $3$ and if they are equal, then the rest one is odd (2 weighs in total); if they're not equal, then the odd is in the $3$-marble sub-pile, weigh two of the three and we can tell (3 weighs).
-\item If the two piles are of different weights, then the odd marble is in either of the weighed $4$-marble piles. Now swap one $3$-marble pile with the rest one's, and weigh again. If they're still different, then the odd one is the one not swapped (2 weighs); if they're now equally heavy, then the odd one is in the sub-pile being swapped. Another weigh can tell the odd one (3 weighs).
+\item If the two piles are of different weights, then the odd marble is in either of the weighed $4$-marble piles. Now rotate the $3$-stone piles, and weigh again. If they're still different, then the odd one is the one not swapped (2 weighs); if they're now equally heavy, then the odd one is in the sub-pile being swapped. Another weigh can tell the odd one (3 weighs).
 \end{nnote}
 
 \item \hl{HS 1.6 (10)}
@@ -978,7 +978,7 @@ $$
 
 \item HS 2.2 (23)
 
-\solution
+\solution With maturity increases we have explosive gammas.
 
 \item \hl{HS 2.3 (23)}
 \item \hl{HS 2.4 (23)}
@@ -987,7 +987,7 @@ $$
 
 \item HS 2.7 (24)
 
-\solution
+\solution I'm delta hedging the stock by buying a call and shorting the stock. Therefore, when the stock price plunges down we have to buy some more stock to fill the gap.
 
 \item \hl{HS 2.8 (24)}
 \item \hl{HS 2.9 (24)}
@@ -997,7 +997,7 @@ $$
 
 \item HS 2.13 (25)
 
-\solution
+\solution Because empirically some stocks' time series are autocorrelated and thus can have larger diffusion term than described in the BS model. A possible approach can be to introduce this autocorrelated into the BS model.
 
 \item \hl{HS 2.14 (25)}
 \item \hl{HS 2.15 (26)}
@@ -1007,7 +1007,29 @@ $$
 
 \item HS 2.19 (27)
 
-\solution
+\solution We have, by assuming $w^*$ as the non-standard Brownian motion,
+$$
+\d S = \mu\d t + \sigma\d w = \sigma\d w^*
+$$
+and thus
+$$
+S = \sigma w^*,\quad  S(T)=  S(t) + \sigma[w^*(T)- w^*(t) ] \equiv S(t) + \sigma W^*
+$$
+under the risk-neutral probability measure with $r=0$.
+This means the call price $c$ is given by
+$$
+c(t) = \exp[-r(T-t)]\E[\max\{S(T)-K, 0\}\mid S(t)] = \int_{v_0}^{\infty}[S(t) + \sigma v - K]f(v)\d v
+$$
+where $f$ is the pdf of $W^*\sim\mathcal{N}(0,T-t)$, i.e.
+$$
+f(v) = \frac{1}{\sqrt{2\pi(T-t)}}\exp\left[-\left(\frac{v}{\sqrt{T-t}}\right)^2\right]
+$$
+and $v_0 = \frac{K-S(t)}{\sigma}$.
+Evaluating this integration and we get
+$$
+c(t) = \sigma\sqrt{T-t}\left[\frac{\exp(-d^2/2)}{\sqrt{2\pi}}+N(d)d\right]
+$$
+where $N$ is the cdf of the standard normal distribution and $d = \frac{S(t)-K}{\sigma\sqrt{T-t}}$.
 
 \item \hl{HS 2.20 (27)}
 \item \hl{HS 2.21 (27)}
@@ -1023,7 +1045,7 @@ $$
 
 \item HS 2.31 (29)
 
-\solution
+\solution By no arbitrage we know it must be $\$0.75$, proportional to the stock price.
 
 \item \hl{HS 2.32 (29)}
 \item \hl{HS 2.33 (29)}
@@ -1042,8 +1064,15 @@ $$
 \item \hl{HS 2.46 (31)}
 \item \hl{HS 2.47 (31)}
 \item \hl{HS 2.48 (31)}
+
 \item HS 2.49 (31)
+
+\solution Because of the no-arbitrage assumption.
+
 \item HS 2.50 (31)
+
+\solution Sure we should use the implied volatility because it is given as a market-consensus forecast of the volatility for the remaining life of the option, i.e. the future instead of the past.
+
 \item \hl{HS 2.51 (31)}
 \item \hl{HS 2.52 (31)}
 \item \hl{HS 2.53 (31)}
@@ -1052,28 +1081,120 @@ $$
 \item \hl{HS 2.56 (32)}
 \item \hl{HS 2.57 (32)}
 \item \hl{HS 2.58 (32)}
+
 \item HS 2.59 (32)
+
+\solution The time decay contributes to a negative term in the value of the call option, but the stochastic term contributes to a positive term with an even larger absolute value, i.e. making tomorrows's option value even higher despite time decay.
+
 \item \hl{HS 2.60 (32)}
 \item \hl{HS 3.1 (33)}
 \item \hl{HS 3.2 (33)}
 \item \hl{HS 3.3 (33)}
 \item \hl{HS 3.4 (33)}
 \item \hl{HS 3.5 (33)}
+
 \item HS 3.6 (34)
+
+\solution The slope of a bond is given by $-D^*P/(1+r)$ where we have all yield $r$ terms in $D^*$. It can be shown that the slope is increasing with $r$.
+
 \item \hl{HS 3.7 (34)}
 \item \hl{HS 3.8 (34)}
 \item \hl{HS 3.9 (34)}
-\item \hl{HS 3.10 (34)}
+
+\item HS 3.10 (34)
+
+\solution Short long-term debts and long short-term debts.
+
 \item \hl{HS 3.11 (35)}
 \item \hl{HS 3.12 (35)}
 \item \hl{HS 3.13 (35)}
-\item \hl{HS 3.14 (35)}
+
+\item HS 3.14 (35)
+
+\solution It's said that a Brady bond usually reflects a quarter of the US treasury change, i.e. here $0.25\%$ rise. Also we assume that the duration of the bond is roughly $15$ years. Then we have
+$$
+\frac{\Delta P}{P}\approx -\frac{D\Delta r}{1+r} = -15\times \frac{0.0025}{1.08} = -0.035
+$$
+which is our estimation of price decrease.
+
 \item \hl{HS 3.15 (35)}
 \item \hl{HS 3.16 (35)}
 \item \hl{HS 3.17 (35)}
 \item \hl{HS 3.18 (36)}
 \item \hl{HS 3.19 (36)}
 \item \hl{HS 3.10 (36)}
+\item \hl{HS 4.1 (37)}
+\item \hl{HS 4.2 (37)}
+\item \hl{HS 4.3 (37)}
+\item \hl{HS 4.4 (37)}
+\item \hl{HS 4.5 (38)}
+
+\item HS 4.6 (38)
+
+\solution We solve the two subquestions one by one.
+\begin{nnote}
+\item First question is easy, and the expectation is $\$1.25X$. This means the expectation \textit{benefit} of switching is $\$0.25X$. Same is true for my opponent regardless of the value of $Y$. Therefore it seems we both should switch and will both benefit from it (which is a paradox). Furthermore, it seems we can switch forever and get our expectation benefits growing forever.
+\item The correct way to solve this paradox is to replace our original prior which was in fact not a pdf (since for any $X$ we have $1/2$ and $1/2$ as probabilities and they never add to $1$ in total), with a new prior that IS a pdf. This can be demonstrated as below
+$$
+\E[\text{benefit}] = -m /2 + m / 2 = 0
+$$
+and thus switching does not yield profit at all. Also, when we actually peaked and switched, we won't be able to switch again because the benefitted one won't agree to switch back.
+\end{nnote}
+
+\item \hl{HS 4.7 (38)}
+\item \hl{HS 4.8 (38)}
+\item \hl{HS 4.9 (38)}
+\item \hl{HS 4.10 (38)}
+\item \hl{HS 4.11 (38)}
+\item \hl{HS 4.12 (39)}
+\item \hl{HS 4.13 (39)}
+\item \hl{HS 4.14 (39)}
+\item \hl{HS 4.15 (40)}
+
+\item HS 4.16 (40)
+
+\solution I hope they fight each other and thus I will not shoot anyone until one of them is dead.
+
+\item \hl{HS 4.17 (40)}
+\item \hl{HS 4.18 (41)}
+\item \hl{HS 4.19 (41)}
+\item \hl{HS 4.20 (41)}
+\item \hl{HS 4.21 (41)}
+\item \hl{HS 4.22 (41)}
+\item \hl{HS 4.23 (41)}
+\item \hl{HS 4.24 (42)}
+\item \hl{HS 4.25 (42)}
+
+\item HS 4.26 (42)
+
+\solution We have the pdf of normal distribution as 
+$$
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{x^2}{2\sigma^2}\right)
+$$
+and thus the expectation of $\exp(x)$ is
+\begin{align*}
+\E[\exp(x)] &= \frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^{\infty}\exp\left(x-\frac{x^2}{2\sigma^2}\right)\d x
+= \frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^{\infty} \exp\left(-\frac{x^2-2\sigma^2x+\sigma^4}{2\sigma^2}+\frac{\sigma^2}{2}\right)\\
+&= \frac{\exp(\sigma^2/2)}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^{\infty} \exp\left(-\frac{y^2}{2\sigma^2}\right)\d y = \exp(\sigma^2/2).
+\end{align*}
+
+\item \hl{HS 4.27 (42)}
+\item \hl{HS 4.28 (43)}
+\item \hl{HS 4.29 (43)}
+\item \hl{HS 4.30 (43)}
+
+\item HS 4.31 (43)
+
+\solution Use the ``star and bars'' method, $C_{24}^4 = 10626$.
+
+\item \hl{HS 4.32 (43)}
+\item \hl{HS 4.33 (43)}
+\item \hl{HS 4.34 (43)}
+\item \hl{HS 4.35 (43)}
+\item \hl{HS 4.36 (43)}
+\item \hl{HS 4.37 (44)}
+\item \hl{HS 4.38 (44)}
+\item \hl{HS 4.39 (44)}
 
 
 
